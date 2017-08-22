@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- 不需要使用别名控制，通过mubatis generator生成的dao，pojo，xml都带有完整路径 -->
+<configuration>
+    <properties>
+        <property name="dialect" value="mysql" />
+    </properties>
+    <settings>
+        <setting name="logImpl" value="LOG4J" />
+    </settings>
+	<typeAliases>
+		<!-- <typeAlias alias="User" type="com.alex.mybatis.entity.User" /> --><!-- 命名别名User，地址为com.alex.mybatis.entity.User -->
+		<!-- <typeAlias alias="Person" type="com.alex.springmvc.mybatis.entity.Person" />
+		<typeAlias alias="Post" type="com.alex.springmvc.mybatis.entity.Post" /> -->
+		<!-- <typeAlias alias="Test" type="com.alex.mybatis.entity.Test" /> -->
+	</typeAliases>
+	<!-- 与spring 集成之后,这些可以完全删除,数据库连接的管理交给 spring 去管理
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />JDBC连接池配置
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://127.0.0.1:3306/ibatisdb" />
+				<property name="username" value="root" />
+				<property name="password" value="admin" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	
+		// power by http://www.yiibai.com
+		<mapper resource="com/alex/mybatis/entity/User.xml" />User.xml映射文件放在src下的com/alex/mybatis/entity/User.xml
+	<mappers>
+		<mapper class="com.alex.mybatis.dao.IUserDao" />
+		<mapper resource="com/alex/mybatis/entity/Person.xml" />
+	</mappers> -->
+	
+</configuration>
