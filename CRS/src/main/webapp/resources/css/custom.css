@@ -13,32 +13,9 @@ body {
 @import
 #page-wrapper
 {
-padding:
-0px
-0px;
-
-min-height
-
-
-:
-
- 
-
-600
-px
-
-
-;
-background
-
-
-:
-
-
-#F3F3F3
-
-
-;
+	padding:0px 0px;
+	min-height:600 px;
+	background: #F3F3F3;
 }
 #page-inner {
 	width: 100%;
