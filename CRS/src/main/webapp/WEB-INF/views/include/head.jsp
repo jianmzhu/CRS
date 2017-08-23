@@ -7,8 +7,8 @@
 <nav class="navbar navbar-inverse navbar-no-bg navbar-fixed-top"
 	role="navigation">
 	<div class="container">
-		<div style="position: absolute; left: 40px; top: 6px;"></div>
-		<div style="position: absolute; left: 100px; top: -2px;">
+		<div id="headDiv1" style="position: absolute; left: 40px; top: 6px;"></div>
+		<div id="headDiv2">
 			<a class="navbar-brand" href="<c:url value="/index" />"><font color="#fff">预约系统</font></a>
 		</div>
 		<div class="collapse navbar-collapse" id="top-navbar-1">
