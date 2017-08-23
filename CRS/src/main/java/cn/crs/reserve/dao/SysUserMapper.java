@@ -33,4 +33,7 @@ public interface SysUserMapper {
     int updateByPrimaryKeyWithBLOBs(SysUser record);
 
     int updateByPrimaryKey(SysUser record);
+    
+    /*****************自定义添加**********************/
+    public SysUser getUserInfoById(int id);
 }

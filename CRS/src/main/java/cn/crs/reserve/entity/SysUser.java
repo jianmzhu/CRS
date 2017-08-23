@@ -1,6 +1,7 @@
 package cn.crs.reserve.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class SysUser {
     private Integer userId;
@@ -30,6 +31,8 @@ public class SysUser {
     private Integer isLock;
 
     private String userDescription;
+    
+    private List<SysRole> sysRoles;
 
     public Integer getUserId() {
         return userId;
@@ -142,4 +145,12 @@ public class SysUser {
     public void setUserDescription(String userDescription) {
         this.userDescription = userDescription == null ? null : userDescription.trim();
     }
+
+	public List<SysRole> getSysRoles() {
+		return sysRoles;
+	}
+
+	public void setSysRoles(List<SysRole> sysRoles) {
+		this.sysRoles = sysRoles;
+	}
 }

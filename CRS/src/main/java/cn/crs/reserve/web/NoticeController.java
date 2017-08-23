@@ -45,7 +45,6 @@ public class NoticeController {
 		}
 		// 查询所有通知
 		List<Notice> notice = noticeService.findNoticeByType(start, pageUtils.getPageRecord());
-		System.out.println("*******************************************");
 		model.addAttribute("notice", notice);
 		model.addAttribute("pages", pageUtils);
 		return "notice/noticeIndex";
