@@ -24,6 +24,17 @@ public class IndexPageController {
 	}
 	
 	/**
+	 * 首页日历显示
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/calendarPage", method = RequestMethod.GET)
+	public String homeCalendarPage() {
+		log.debug("用户主页日历显示...");
+		return "indexPages/indexCalendarPage";
+	}
+	
+	/**
 	 * 用户主页
 	 * 
 	 * @return
