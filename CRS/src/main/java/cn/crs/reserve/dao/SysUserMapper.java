@@ -1,8 +1,11 @@
 package cn.crs.reserve.dao;
 
+import cn.crs.reserve.entity.Notice;
 import cn.crs.reserve.entity.SysUser;
 import cn.crs.reserve.entity.SysUserExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface SysUserMapper {
@@ -35,5 +38,15 @@ public interface SysUserMapper {
     int updateByPrimaryKey(SysUser record);
     
     /*****************自定义添加**********************/
+    //查看指定id的SysUser
     public SysUser getUserInfoById(int id);
+    
+    //通过分页查询对应的用户列表
+    public List<SysUser> getUserListWithPaginated(@Param("start") int start, @Param("size") int size);
+    
+    //直接查找所有用户列表
+    public List<SysUser> getAllUserList();
+    
+    // 查询所有用户的数量
+  	public int countSysUserByTypeNum();
 }

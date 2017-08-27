@@ -445,4 +445,19 @@
 		left join t_role x3 on x3.role_id = x2.role_id
 		where x1.user_id=#{id} 
   	</select>
+  	
+	<select id="getAllUserList" resultType="cn.crs.reserve.entity.SysUser">
+    	select * from `t_user`
+	</select>
+	
+	<select id="getUserListWithPaginated" resultType="cn.crs.reserve.entity.SysUser">
+		SELECT
+		* FROM `t_user` limit #{start},#{size}
+	</select>
+	
+	<!-- 查询通知的数量 -->
+	<select id="countSysUserByTypeNum" resultType="java.lang.Integer">
+		SELECT
+		COUNT(*) FROM `t_user`
+	</select>
 </mapper>

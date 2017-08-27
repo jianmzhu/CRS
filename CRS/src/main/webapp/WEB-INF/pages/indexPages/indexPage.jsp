@@ -75,7 +75,7 @@
                         </a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a class="J_menuItem" href="index_v1.html" data-index="index_v1.html">用户管理</a>
+                                <a class="J_menuItem" href="${mybasePath}/AllSysUser" data-index="AllSysUser">用户管理</a>
                             </li>
                         </ul>
                     </li>
@@ -227,5 +227,14 @@
         <!--右侧边栏结束-->
        
     </div>
+    
+    <script src="${mybasePath}/bootstrapUI/js/jquery.min.js?v=2.1.4"></script>
+	<script src="${mybasePath}/bootstrapUI/js/bootstrap.min.js?v=3.3.6"></script>
+	<script src="${mybasePath}/bootstrapUI/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+	<script src="${mybasePath}/bootstrapUI/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="${mybasePath}/bootstrapUI/js/plugins/layer/layer.min.js"></script>
+	<script src="${mybasePath}/bootstrapUI/js/hplus.min.js?v=4.1.0"></script>
+	<script type="text/javascript" src="${mybasePath}/bootstrapUI/js/contabs.min.js"></script>
+	<script src="${mybasePath}/bootstrapUI/js/plugins/pace/pace.min.js"></script>
 </body>
 </html>

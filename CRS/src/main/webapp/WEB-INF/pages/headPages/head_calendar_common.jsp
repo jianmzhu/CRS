@@ -6,11 +6,11 @@
 
 <!-- CSS部分引用结束 -->
 
-<!-- JS部分引用开始 -->
-<script src="${mybasePath}/bootstrapUI/js/content.min.js?v=1.0.0"></script>
+<!-- JS部分引用开始  各自页面进行引用-->
+<%-- <script src="${mybasePath}/bootstrapUI/js/content.min.js?v=1.0.0"></script>
 <script src="${mybasePath}/bootstrapUI/js/jquery-ui.custom.min.js"></script>
 <script src="${mybasePath}/bootstrapUI/js/plugins/iCheck/icheck.min.js"></script>
-<script src="${mybasePath}/bootstrapUI/js/plugins/fullcalendar/fullcalendar.min.js"></script>
+<script src="${mybasePath}/bootstrapUI/js/plugins/fullcalendar/fullcalendar.min.js"></script> --%>
 
 <!-- JS部分引用结束 -->
 

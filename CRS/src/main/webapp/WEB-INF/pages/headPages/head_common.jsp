@@ -15,15 +15,15 @@
 <link href="${mybasePath}/bootstrapUI/css/style.min862f.css?v=4.1.0" rel="stylesheet">
 <!-- CSS部分引用结束 -->
 
-<!-- JS部分引用开始 -->
-<script src="${mybasePath}/bootstrapUI/js/jquery.min.js?v=2.1.4"></script>
+<!-- JS部分引用开始  各自页面进行引用-->
+<%-- <script src="${mybasePath}/bootstrapUI/js/jquery.min.js?v=2.1.4"></script>
 <script src="${mybasePath}/bootstrapUI/js/bootstrap.min.js?v=3.3.6"></script>
 <script src="${mybasePath}/bootstrapUI/js/plugins/metisMenu/jquery.metisMenu.js"></script>
 <script src="${mybasePath}/bootstrapUI/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 <script src="${mybasePath}/bootstrapUI/js/plugins/layer/layer.min.js"></script>
 <script src="${mybasePath}/bootstrapUI/js/hplus.min.js?v=4.1.0"></script>
 <script type="text/javascript" src="${mybasePath}/bootstrapUI/js/contabs.min.js"></script>
-<script src="${mybasePath}/bootstrapUI/js/plugins/pace/pace.min.js"></script>
+<script src="${mybasePath}/bootstrapUI/js/plugins/pace/pace.min.js"></script> --%>
 
 <!-- JS部分引用结束 -->
 

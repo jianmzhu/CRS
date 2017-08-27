@@ -24,23 +24,14 @@
 <body class="gray-bg">
     <div class="wrapper wrapper-content">
         <div class="row animated fadeInDown">
-            <div class="col-lg-12 col-sm-12 col-sx-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-sx-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>FullCalendar示例 </h5>
+                        <h5>约车日程表</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
                             </a>
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="${mybasePath}/calendarPage#">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li><a href="${mybasePath}/calendarPage#">选项1</a>
-                                </li>
-                                <li><a href="${mybasePath}/calendarPage#">选项2</a>
-                                </li>
-                            </ul>
                             <a class="close-link">
                                 <i class="fa fa-times"></i>
                             </a>
@@ -53,7 +44,12 @@
             </div>
         </div>
     </div>
-
+    <script src="${mybasePath}/bootstrapUI/js/jquery.min.js?v=2.1.4"></script>
+    <script src="${mybasePath}/bootstrapUI/js/bootstrap.min.js?v=3.3.6"></script>
+	<script src="${mybasePath}/bootstrapUI/js/content.min.js?v=1.0.0"></script>
+	<script src="${mybasePath}/bootstrapUI/js/jquery-ui.custom.min.js"></script>
+	<script src="${mybasePath}/bootstrapUI/js/plugins/iCheck/icheck.min.js"></script>
+	<script src="${mybasePath}/bootstrapUI/js/plugins/fullcalendar/fullcalendar.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			$(".i-checks").iCheck({
