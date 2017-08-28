@@ -2,6 +2,7 @@
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -48,7 +49,7 @@
                                     <th>用户工号</th>
                                     <th>用户姓名</th>
                                     <th>电话</th>
-                                    <th>微信号</th>
+                                    <th>用户权限</th>
                                     <th>创建时间</th>
                                 </tr>
                             </thead>
@@ -59,8 +60,15 @@
 										<td><a href="<c:url value='/sysUserInfo/${users.userId}' />">${users.userId }</a></td>
 										<td><a href="<c:url value='/sysUserInfo/${users.userId}' />">${users.userName }</a></td>
 										<td>${users.userPhone}</td>
-										<td>${users.userWeixin}</td>
-										<td>${users.createTime }</td>
+										<td>
+											<c:forEach var="sysRoles" items="${users.sysRoles}" varStatus="status">
+												${sysRoles.roleName}
+												<c:if test="${!status.last}">
+													,<!-- 非最后一项值不用加逗号 -->
+												</c:if>
+											</c:forEach>
+										</td>
+										<td><fmt:formatDate value="${users.createTime }" pattern="yyyy-MM-dd" /></td><!-- 直接对日期进行格式化 -->
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -70,7 +78,7 @@
                                     <th>用户工号</th>
                                     <th>用户姓名</th>
                                     <th>电话</th>
-                                    <th>微信号</th>
+                                    <th>用户权限</th>
                                     <th>创建时间</th>
                                 </tr>
                             </tfoot>

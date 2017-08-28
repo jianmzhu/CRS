@@ -101,10 +101,21 @@ public class IndexPageController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/logOff", method = RequestMethod.GET)
-	public String logOff(HttpSession session) {
+	@RequestMapping(value = "/loginOut", method = RequestMethod.GET)
+	public String loginOut(HttpSession session) {
 		session.invalidate();
-		log.debug("用户登录主页...");
-		return "indexPages/indexPage";
+		log.debug("输入http://<ip>:<port>/CRS/loginOut 用户退出系统界面...");
+		return "loginPages/loginPage";
+	}
+	
+	/**
+	 * 退出登录
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = {"/login","/Login"}, method = RequestMethod.GET)
+	public String redirectlogin(HttpSession session) {
+		log.debug("输入http://<ip>:<port>/CRS/[login|Login] 重定位到项目根地址...");
+		return "redirect:/";
 	}
 }

@@ -55,12 +55,13 @@
                         <div class="logo-element">H+
                         </div>
                     </li>
-                    <li>
+                    <!-- 暂时不展示首页 -->
+                    <%-- <li>
                     	<a class="J_menuItem" href="${mybasePath}/calendarPage">
                     		<i class="fa fa-home"></i>
-                            <span class="nav-label">主页</span>
+                            <span class="nav-label">首页</span>
                     	</a>
-                    </li>
+                    </li> --%>
                     <li>
                     	<a class="J_menuItem" href="${mybasePath}/calendarPage">
                     		<i class="fa fa-car"></i>
@@ -124,7 +125,7 @@
                         </li>
                     </ul>
                 </div>
-                <a href="login.html" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+                <a href="${mybasePath}/loginOut" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
             </div>
             <div class="row J_mainContent" id="content-main">
                 <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="${mybasePath}/calendarPage"  frameborder="0" data-id="index_v1.html" seamless></iframe>

@@ -430,14 +430,14 @@
 		<!-- collection表示多的一方，在一的一方有list参数 -->
 		<collection property="sysRoles" ofType="cn.crs.reserve.entity.SysRole" column="role_id">
 			<!-- 下述的键可以简化不需要javaType，jdbcType -->
-			<id property="role_id" column="role_id" javaType="int" jdbcType="INTEGER" />
-			<result property="role_name" column="role_name" javaType="string"
+			<id property="roleId" column="role_id" javaType="int" jdbcType="INTEGER" />
+			<result property="roleName" column="role_name" javaType="string"
 				jdbcType="VARCHAR" />
 		</collection>
 	</resultMap>
 	
 	<select id="getUserInfoById" resultMap="resultSysUser" parameterType="int">
-		select x1.user_id,x1.user_name,x1.user_password,x1.user_phone,x1.user_email,
+		select x1.user_id,x1.user_name,x1.user_phone,x1.user_email,
 		x1.user_weixin,x1.user_qq,x1.user_jobno,x1.user_post,x1.create_time,x1.update_time,
 		x1.status,x1.is_lock,x3.role_id,x3.role_name
 		from t_user x1
@@ -446,8 +446,13 @@
 		where x1.user_id=#{id} 
   	</select>
   	
-	<select id="getAllUserList" resultType="cn.crs.reserve.entity.SysUser">
-    	select * from `t_user`
+	<select id="getAllUserList" resultMap="resultSysUser">
+    	select x1.user_id,x1.user_name,x1.user_phone,x1.user_email,
+		x1.user_weixin,x1.user_qq,x1.user_jobno,x1.user_post,x1.create_time,x1.update_time,
+		x1.status,x1.is_lock,x3.role_id,x3.role_name
+		from t_user x1
+		left join t_user_role_relat x2 on x2.user_id = x1.user_id
+		left join t_role x3 on x3.role_id = x2.role_id
 	</select>
 	
 	<select id="getUserListWithPaginated" resultType="cn.crs.reserve.entity.SysUser">
