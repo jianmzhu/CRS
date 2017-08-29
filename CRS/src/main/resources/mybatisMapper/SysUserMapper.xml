@@ -446,6 +446,16 @@
 		where x1.user_id=#{id} 
   	</select>
   	
+	<select id="getUserInfoByJobNo" resultMap="resultSysUser" parameterType="String">
+		select x1.user_id,x1.user_password,x1.user_name,x1.user_phone,x1.user_email,
+		x1.user_weixin,x1.user_qq,x1.user_jobno,x1.user_post,x1.create_time,x1.update_time,
+		x1.status,x1.is_lock,x3.role_id,x3.role_name
+		from t_user x1
+		left join t_user_role_relat x2 on x2.user_id = x1.user_id
+		left join t_role x3 on x3.role_id = x2.role_id
+		where x1.user_jobno=#{jobNo} 
+  	</select>
+  	
 	<select id="getAllUserList" resultMap="resultSysUser">
     	select x1.user_id,x1.user_name,x1.user_phone,x1.user_email,
 		x1.user_weixin,x1.user_qq,x1.user_jobno,x1.user_post,x1.create_time,x1.update_time,

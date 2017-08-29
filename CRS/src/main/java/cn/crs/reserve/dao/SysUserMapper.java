@@ -1,6 +1,5 @@
 package cn.crs.reserve.dao;
 
-import cn.crs.reserve.entity.Notice;
 import cn.crs.reserve.entity.SysUser;
 import cn.crs.reserve.entity.SysUserExample;
 
@@ -40,6 +39,9 @@ public interface SysUserMapper {
     /*****************自定义添加**********************/
     //查看指定id的SysUser
     public SysUser getUserInfoById(int id);
+    
+    //查看指定jobNo的SysUser
+    public SysUser getUserInfoByJobNo(String jobNo);
     
     //通过分页查询对应的用户列表
     public List<SysUser> getUserListWithPaginated(@Param("start") int start, @Param("size") int size);

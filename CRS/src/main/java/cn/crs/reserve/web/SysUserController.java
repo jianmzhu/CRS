@@ -2,8 +2,6 @@ package cn.crs.reserve.web;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +21,10 @@ import cn.crs.reserve.service.SysUserService;
  *
  * @date 2017年6月2日
  */
+@SuppressWarnings("unused")
 @Controller
 public class SysUserController {
+	
 	private static Logger log = LoggerFactory.getLogger(SysUserController.class);
 
 	@Autowired
@@ -80,15 +80,4 @@ public class SysUserController {
 		return "userInfo/allSysUserPage";
 	}
 	
-//	/**
-//	 * 项目跳转到 用户记录页面 
-//	 * 
-//	 * @return
-//	 */
-//	@RequestMapping(value = "/sysUserList", method = RequestMethod.GET)
-//	public String sysUserListPage() {
-//		log.debug("用户跳转sysUserList页面...");
-//		return "userInfo/AllSysUserPage";
-//	}
-
 }

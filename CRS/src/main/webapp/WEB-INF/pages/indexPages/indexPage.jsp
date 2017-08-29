@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -34,8 +37,15 @@
                             <span><img alt="image" class="img-circle" src="${mybasePath}/bootstrapUI/img/profile_small.jpg" /></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
-                                    <span class="block m-t-xs"><strong class="font-bold">xiaoming</strong></span>
-                                    <span class="text-muted text-xs block">超级管理员<b class="caret"></b></span>
+                                    <span class="block m-t-xs"><strong class="font-bold">${user.userName}</strong></span>
+                                    <span class="text-muted text-xs block">
+										<c:forEach var="sysRoles" items="${user.sysRoles}" varStatus="status">
+												${sysRoles.roleName}
+												<c:if test="${!status.last}">
+													,<!-- 非最后一项值不用加逗号 -->
+												</c:if>
+										</c:forEach>
+									<b class="caret"></b></span>
                                 </span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
@@ -43,12 +53,8 @@
                                 </li>
                                 <li><a class="J_menuItem" href="profile.html">个人资料</a>
                                 </li>
-                                <li><a class="J_menuItem" href="contacts.html">联系我们</a>
-                                </li>
-                                <li><a class="J_menuItem" href="mailbox.html">信箱</a>
-                                </li>
                                 <li class="divider"></li>
-                                <li><a href="login.html">安全退出</a>
+                                <li><a href="${mybasePath}/loginOut">安全退出</a>
                                 </li>
                             </ul>
                         </div>

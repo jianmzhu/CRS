@@ -40,10 +40,10 @@
 
             <form class="m-t" role="form" method="post" action="${mybasePath}/login">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="userName" placeholder="用户名" required="">
+                    <input type="text" class="form-control" name="userJobNo" id="userJobNo" placeholder="工号" required="">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" id="userPassword" placeholder="密码" required="">
+                    <input type="password" class="form-control" name="userPassword" id="userPassword" placeholder="密码" required="">
                 </div>
                 <div class="form-group">
 					<p class="text-danger"	id="errorTip">${error}</p>
