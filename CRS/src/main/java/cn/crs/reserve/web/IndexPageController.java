@@ -85,6 +85,17 @@ public class IndexPageController {
 	}
 	
 	/**
+	 * 预约车辆页面显示
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/bookCars", method = RequestMethod.GET)
+	public String homeBookCarsPage() {
+		log.debug("预约车辆页面显示...");
+		return "bookCarsPages/bookCarsPage";
+	}
+	
+	/**
 	 * 用户联系我们
 	 * 
 	 * @return

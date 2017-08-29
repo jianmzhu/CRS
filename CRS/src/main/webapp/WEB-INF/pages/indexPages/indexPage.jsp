@@ -49,9 +49,9 @@
                                 </span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a class="J_menuItem" href="form_avatar.html">修改头像</a>
+                                <li><a class="J_menuItem" href="#">修改头像</a>
                                 </li>
-                                <li><a class="J_menuItem" href="profile.html">个人资料</a>
+                                <li><a class="J_menuItem" href="#">个人资料</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li><a href="${mybasePath}/loginOut">安全退出</a>
@@ -69,7 +69,7 @@
                     	</a>
                     </li> --%>
                     <li>
-                    	<a class="J_menuItem" href="${mybasePath}/calendarPage">
+                    	<a class="J_menuItem" href="${mybasePath}/bookCars">
                     		<i class="fa fa-car"></i>
                             <span class="nav-label">约车</span>
                     	</a>
