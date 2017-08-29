@@ -50,3 +50,88 @@ CREATE TABLE IF NOT EXISTS `t_notice` (
 `is_del`  int(1) NOT NULL DEFAULT 0 COMMENT '是否使用 0-未删除，1-已删除' ,
 PRIMARY KEY (`notice_id`)
 );
+
+
+drop table `t_times_list`;
+#时间段列表
+CREATE TABLE IF NOT EXISTS `t_times_list` (
+`times_id`  varchar(11) NOT NULL COMMENT '时间段id',
+`times_name`  varchar(255) NOT NULL COMMENT '时间段名字' ,
+`times_parent_id`  varchar(11) COMMENT '父级时间段id', 
+`level_no` INT(2) NOT NULL COMMENT '级数',
+PRIMARY KEY (`times_id`)
+);
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('00:00-24:00','全天','','1');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('00:00-06:00','凌晨','00:00-24:00','2');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('06:00-12:00','上午','00:00-24:00','2');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('12:00-18:00','下午','00:00-24:00','2');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('18:00-24:00','夜间','00:00-24:00','2');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('00:00-01:00','零点','00:00-06:00','3');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('01:00-02:00','一点','00:00-06:00','3');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('02:00-03:00','两点','00:00-06:00','3');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('03:00-04:00','三点','00:00-06:00','3');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('04:00-05:00','四点','00:00-06:00','3');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('05:00-06:00','五点','00:00-06:00','3');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('06:00-07:00','六点','06:00-12:00','3');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('07:00-08:00','七点','06:00-12:00','3');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('08:00-09:00','八点','06:00-12:00','3');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('09:00-10:00','九点','06:00-12:00','3');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('10:00-11:00','十点','06:00-12:00','3');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('11:00-12:00','十一点','06:00-12:00','3');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('12:00-13:00','十二点','12:00-18:00','3');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('13:00-14:00','十三点','12:00-18:00','3');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('14:00-15:00','十四点','12:00-18:00','3');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('15:00-16:00','十五点','12:00-18:00','3');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('16:00-17:00','十六点','12:00-18:00','3');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('17:00-18:00','十七点','12:00-18:00','3');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('18:00-19:00','十八点','18:00-24:00','3');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('19:00-20:00','十九点','18:00-24:00','3');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('20:00-21:00','二十点','18:00-24:00','3');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('21:00-22:00','二十一点','18:00-24:00','3');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('22:00-23:00','二十二点','18:00-24:00','3');
+insert into t_times_list (times_id,times_name,times_parent_id,level_no) values ('23:00-24:00','二十三点','18:00-24:00','3');
+
+drop table `t_car`;
+#车辆信息表
+CREATE TABLE IF NOT EXISTS `t_car` (
+`car_id`  int(16) NOT NULL AUTO_INCREMENT COMMENT '车辆ID',
+`car_no`  varchar(16) NOT NULL COMMENT '车牌号码' ,
+`car_diver_name`  varchar(16) NOT NULL COMMENT '司机名字' ,
+`car_diver_phone`  varchar(16) COMMENT '司机电话' ,
+`car_type` int(2) COMMENT '车型 0-小轿车；1-SUV；' ,
+PRIMARY KEY (`car_id`)
+);
+
+insert into t_car (car_id,car_no,car_diver_name,car_diver_phone,car_type)
+values (1,'测试车牌号xxxx','测试司机xxxx','15889924339',0);
+
+drop table `t_book_car_dtl`;
+#车辆申请预约信息表(显示用户约车记录数据)
+CREATE TABLE IF NOT EXISTS `t_book_car_dtl` (
+`book_id`  int(16) NOT NULL AUTO_INCREMENT COMMENT '预约流水号',
+`car_id`  int(16) NOT NULL COMMENT '车辆ID',
+`book_times`  varchar(512) NOT NULL COMMENT '预约车的时间段，用逗号做分隔符' ,
+`book_user_jobno`  varchar(32) NOT NULL COMMENT '约车用户工号' ,
+`book_summ`  varchar(1024) NOT NULL COMMENT '约车摘要备注' ,
+`book_from`  varchar(256) NOT NULL COMMENT '约车起点' ,
+`book_to`  varchar(256) NOT NULL COMMENT '约车目的地' ,
+`check_user_jobno`  varchar(32) COMMENT '审核用户工号，如果审核通过或者审核不通过，该值不为空' ,
+`check_flag` int(1) NOT NULL DEFAULT 0 COMMENT '0-未审核，1-审核通过，2-审核不通过' ,
+PRIMARY KEY (`book_id`)
+);
+
+drop table `t_car_times_dtl`;
+#车辆日程信息表(显示在首页日历栏上的查询数据，已审核通过)
+CREATE TABLE IF NOT EXISTS `t_car_times_dtl` (
+`car_id`  int(16) NOT NULL COMMENT '车辆ID',
+`times_id`  varchar(11) NOT NULL COMMENT '时间段id,只能为三级的时间段id',
+`book_id`  int(16) NOT NULL COMMENT '预约流水号',
+`book_user_jobno`  varchar(32) NOT NULL COMMENT '约车用户工号' ,
+`book_summ`  varchar(1024) NOT NULL COMMENT '约车摘要备注' ,
+`book_from`  varchar(256) NOT NULL COMMENT '约车起点' ,
+`book_to`  varchar(256) NOT NULL COMMENT '约车目的地' ,
+`book_times`  varchar(512) NOT NULL COMMENT '预约车的时间段，用逗号做分隔符' ,
+`check_user_jobno`  varchar(32) COMMENT '审核用户工号，如果审核通过或者审核不通过，该值不为空' ,
+`check_flag` int(1) NOT NULL DEFAULT 2 COMMENT '0-未审核，1-审核通过，2-审核不通过' ,
+PRIMARY KEY (`car_id`,`times_id`)
+);
