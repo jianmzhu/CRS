@@ -1,7 +1,11 @@
 package cn.crs.reserve.entity;
 
+import java.util.Date;
+
 public class CarTimesDtl extends CarTimesDtlKey {
     private Integer bookId;
+
+    private Date bookTimestamp;
 
     private String bookUserJobno;
 
@@ -23,6 +27,14 @@ public class CarTimesDtl extends CarTimesDtlKey {
 
     public void setBookId(Integer bookId) {
         this.bookId = bookId;
+    }
+
+    public Date getBookTimestamp() {
+        return bookTimestamp;
+    }
+
+    public void setBookTimestamp(Date bookTimestamp) {
+        this.bookTimestamp = bookTimestamp;
     }
 
     public String getBookUserJobno() {

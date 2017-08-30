@@ -1,6 +1,8 @@
 package cn.crs.reserve.entity;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 public class BookCarDtlExample {
@@ -104,6 +106,32 @@ public class BookCarDtlExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        protected void addCriterionForJDBCDate(String condition, Date value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Date(value.getTime()), property);
+        }
+
+        protected void addCriterionForJDBCDate(String condition, List<Date> values, String property) {
+            if (values == null || values.size() == 0) {
+                throw new RuntimeException("Value list for " + property + " cannot be null or empty");
+            }
+            List<java.sql.Date> dateList = new ArrayList<java.sql.Date>();
+            Iterator<Date> iter = values.iterator();
+            while (iter.hasNext()) {
+                dateList.add(new java.sql.Date(iter.next().getTime()));
+            }
+            addCriterion(condition, dateList, property);
+        }
+
+        protected void addCriterionForJDBCDate(String condition, Date value1, Date value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Date(value1.getTime()), new java.sql.Date(value2.getTime()), property);
+        }
+
         public Criteria andBookIdIsNull() {
             addCriterion("book_id is null");
             return (Criteria) this;
@@ -161,6 +189,126 @@ public class BookCarDtlExample {
 
         public Criteria andBookIdNotBetween(Integer value1, Integer value2) {
             addCriterion("book_id not between", value1, value2, "bookId");
+            return (Criteria) this;
+        }
+
+        public Criteria andBookDateIsNull() {
+            addCriterion("book_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBookDateIsNotNull() {
+            addCriterion("book_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBookDateEqualTo(Date value) {
+            addCriterionForJDBCDate("book_date =", value, "bookDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andBookDateNotEqualTo(Date value) {
+            addCriterionForJDBCDate("book_date <>", value, "bookDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andBookDateGreaterThan(Date value) {
+            addCriterionForJDBCDate("book_date >", value, "bookDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andBookDateGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("book_date >=", value, "bookDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andBookDateLessThan(Date value) {
+            addCriterionForJDBCDate("book_date <", value, "bookDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andBookDateLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("book_date <=", value, "bookDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andBookDateIn(List<Date> values) {
+            addCriterionForJDBCDate("book_date in", values, "bookDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andBookDateNotIn(List<Date> values) {
+            addCriterionForJDBCDate("book_date not in", values, "bookDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andBookDateBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("book_date between", value1, value2, "bookDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andBookDateNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("book_date not between", value1, value2, "bookDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andBookTimestampIsNull() {
+            addCriterion("book_timestamp is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBookTimestampIsNotNull() {
+            addCriterion("book_timestamp is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBookTimestampEqualTo(Date value) {
+            addCriterion("book_timestamp =", value, "bookTimestamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andBookTimestampNotEqualTo(Date value) {
+            addCriterion("book_timestamp <>", value, "bookTimestamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andBookTimestampGreaterThan(Date value) {
+            addCriterion("book_timestamp >", value, "bookTimestamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andBookTimestampGreaterThanOrEqualTo(Date value) {
+            addCriterion("book_timestamp >=", value, "bookTimestamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andBookTimestampLessThan(Date value) {
+            addCriterion("book_timestamp <", value, "bookTimestamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andBookTimestampLessThanOrEqualTo(Date value) {
+            addCriterion("book_timestamp <=", value, "bookTimestamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andBookTimestampIn(List<Date> values) {
+            addCriterion("book_timestamp in", values, "bookTimestamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andBookTimestampNotIn(List<Date> values) {
+            addCriterion("book_timestamp not in", values, "bookTimestamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andBookTimestampBetween(Date value1, Date value2) {
+            addCriterion("book_timestamp between", value1, value2, "bookTimestamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andBookTimestampNotBetween(Date value1, Date value2) {
+            addCriterion("book_timestamp not between", value1, value2, "bookTimestamp");
             return (Criteria) this;
         }
 

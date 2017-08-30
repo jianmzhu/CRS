@@ -1,7 +1,13 @@
 package cn.crs.reserve.entity;
 
+import java.util.Date;
+
 public class BookCarDtl {
     private Integer bookId;
+
+    private Date bookDate;
+
+    private Date bookTimestamp;
 
     private Integer carId;
 
@@ -25,6 +31,22 @@ public class BookCarDtl {
 
     public void setBookId(Integer bookId) {
         this.bookId = bookId;
+    }
+
+    public Date getBookDate() {
+        return bookDate;
+    }
+
+    public void setBookDate(Date bookDate) {
+        this.bookDate = bookDate;
+    }
+
+    public Date getBookTimestamp() {
+        return bookTimestamp;
+    }
+
+    public void setBookTimestamp(Date bookTimestamp) {
+        this.bookTimestamp = bookTimestamp;
     }
 
     public Integer getCarId() {
