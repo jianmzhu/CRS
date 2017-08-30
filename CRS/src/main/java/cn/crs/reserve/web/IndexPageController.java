@@ -1,5 +1,7 @@
 package cn.crs.reserve.web;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,8 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import cn.crs.common.DateUtil;
+import cn.crs.reserve.entity.CarTimesDtl;
+import cn.crs.reserve.entity.CarTimesDtlExample;
+import cn.crs.reserve.entity.CarTimesDtlExample.Criteria;
 import cn.crs.reserve.entity.SysUser;
 import cn.crs.reserve.exception.UserLoginException;
+import cn.crs.reserve.service.CarTimesDtlService;
 import cn.crs.reserve.service.SysUserService;
 
 @Controller
@@ -21,6 +28,9 @@ public class IndexPageController {
 	
 	@Autowired
 	private SysUserService sysUserService;
+	
+	@Autowired
+	private CarTimesDtlService carTimesDtlService;
 	
 	/**
 	 * 项目根路径跳转到 用户登录页面 
@@ -79,8 +89,15 @@ public class IndexPageController {
 	 * @return
 	 */
 	@RequestMapping(value = "/calendarPage", method = RequestMethod.GET)
-	public String homeCalendarPage() {
+	public String homeCalendarPage(Model model) {
 		log.debug("用户主页日历显示...");
+		//传输最近两个月的数据，当月and下月
+		CarTimesDtlExample carTimesDtlExample = new CarTimesDtlExample();
+		Criteria criteria = carTimesDtlExample.createCriteria();
+		//查找上月至下月之间的已约车记录
+		criteria.andBookDateBetween(DateUtil.getFirstDayOfLastMonth(), DateUtil.getLastDayOfNextMonth());
+		List<CarTimesDtl> books= carTimesDtlService.selectByExample(carTimesDtlExample);
+		model.addAttribute("books", books);//预约的记录
 		return "indexPages/indexCalendarPage";
 	}
 	

@@ -2,7 +2,7 @@ package cn.crs.reserve.dao;
 
 import cn.crs.reserve.entity.CarTimesDtl;
 import cn.crs.reserve.entity.CarTimesDtlExample;
-import cn.crs.reserve.entity.CarTimesDtlKey;
+import java.util.Date;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -11,7 +11,7 @@ public interface CarTimesDtlMapper {
 
     int deleteByExample(CarTimesDtlExample example);
 
-    int deleteByPrimaryKey(CarTimesDtlKey key);
+    int deleteByPrimaryKey(@Param("carId") Integer carId, @Param("timesId") String timesId, @Param("bookDate") Date bookDate);
 
     int insert(CarTimesDtl record);
 
@@ -19,7 +19,7 @@ public interface CarTimesDtlMapper {
 
     List<CarTimesDtl> selectByExample(CarTimesDtlExample example);
 
-    CarTimesDtl selectByPrimaryKey(CarTimesDtlKey key);
+    CarTimesDtl selectByPrimaryKey(@Param("carId") Integer carId, @Param("timesId") String timesId, @Param("bookDate") Date bookDate);
 
     int updateByExampleSelective(@Param("record") CarTimesDtl record, @Param("example") CarTimesDtlExample example);
 

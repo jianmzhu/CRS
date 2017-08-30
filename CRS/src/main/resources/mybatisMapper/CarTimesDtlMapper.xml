@@ -4,7 +4,9 @@
   <resultMap id="BaseResultMap" type="cn.crs.reserve.entity.CarTimesDtl">
     <id column="car_id" jdbcType="INTEGER" property="carId" />
     <id column="times_id" jdbcType="VARCHAR" property="timesId" />
+    <id column="book_date" jdbcType="DATE" property="bookDate" />
     <result column="book_id" jdbcType="INTEGER" property="bookId" />
+    <result column="book_timestamp" jdbcType="TIMESTAMP" property="bookTimestamp" />
     <result column="book_user_jobno" jdbcType="VARCHAR" property="bookUserJobno" />
     <result column="book_summ" jdbcType="VARCHAR" property="bookSumm" />
     <result column="book_from" jdbcType="VARCHAR" property="bookFrom" />
@@ -72,8 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    car_id, times_id, book_id, book_user_jobno, book_summ, book_from, book_to, book_times, 
-    check_user_jobno, check_flag
+    car_id, times_id, book_date, book_id, book_timestamp, book_user_jobno, book_summ, 
+    book_from, book_to, book_times, check_user_jobno, check_flag
   </sql>
   <select id="selectByExample" parameterType="cn.crs.reserve.entity.CarTimesDtlExample" resultMap="BaseResultMap">
     select
@@ -89,17 +91,19 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="cn.crs.reserve.entity.CarTimesDtlKey" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from t_car_times_dtl
     where car_id = #{carId,jdbcType=INTEGER}
       and times_id = #{timesId,jdbcType=VARCHAR}
+      and book_date = #{bookDate,jdbcType=DATE}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="cn.crs.reserve.entity.CarTimesDtlKey">
+  <delete id="deleteByPrimaryKey" parameterType="map">
     delete from t_car_times_dtl
     where car_id = #{carId,jdbcType=INTEGER}
       and times_id = #{timesId,jdbcType=VARCHAR}
+      and book_date = #{bookDate,jdbcType=DATE}
   </delete>
   <delete id="deleteByExample" parameterType="cn.crs.reserve.entity.CarTimesDtlExample">
     delete from t_car_times_dtl
@@ -108,14 +112,16 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.crs.reserve.entity.CarTimesDtl">
-    insert into t_car_times_dtl (car_id, times_id, book_id, 
-      book_user_jobno, book_summ, book_from, 
-      book_to, book_times, check_user_jobno, 
-      check_flag)
-    values (#{carId,jdbcType=INTEGER}, #{timesId,jdbcType=VARCHAR}, #{bookId,jdbcType=INTEGER}, 
-      #{bookUserJobno,jdbcType=VARCHAR}, #{bookSumm,jdbcType=VARCHAR}, #{bookFrom,jdbcType=VARCHAR}, 
-      #{bookTo,jdbcType=VARCHAR}, #{bookTimes,jdbcType=VARCHAR}, #{checkUserJobno,jdbcType=VARCHAR}, 
-      #{checkFlag,jdbcType=INTEGER})
+    insert into t_car_times_dtl (car_id, times_id, book_date, 
+      book_id, book_timestamp, book_user_jobno, 
+      book_summ, book_from, book_to, 
+      book_times, check_user_jobno, check_flag
+      )
+    values (#{carId,jdbcType=INTEGER}, #{timesId,jdbcType=VARCHAR}, #{bookDate,jdbcType=DATE}, 
+      #{bookId,jdbcType=INTEGER}, #{bookTimestamp,jdbcType=TIMESTAMP}, #{bookUserJobno,jdbcType=VARCHAR}, 
+      #{bookSumm,jdbcType=VARCHAR}, #{bookFrom,jdbcType=VARCHAR}, #{bookTo,jdbcType=VARCHAR}, 
+      #{bookTimes,jdbcType=VARCHAR}, #{checkUserJobno,jdbcType=VARCHAR}, #{checkFlag,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="cn.crs.reserve.entity.CarTimesDtl">
     insert into t_car_times_dtl
@@ -126,8 +132,14 @@
       <if test="timesId != null">
         times_id,
       </if>
+      <if test="bookDate != null">
+        book_date,
+      </if>
       <if test="bookId != null">
         book_id,
+      </if>
+      <if test="bookTimestamp != null">
+        book_timestamp,
       </if>
       <if test="bookUserJobno != null">
         book_user_jobno,
@@ -158,8 +170,14 @@
       <if test="timesId != null">
         #{timesId,jdbcType=VARCHAR},
       </if>
+      <if test="bookDate != null">
+        #{bookDate,jdbcType=DATE},
+      </if>
       <if test="bookId != null">
         #{bookId,jdbcType=INTEGER},
+      </if>
+      <if test="bookTimestamp != null">
+        #{bookTimestamp,jdbcType=TIMESTAMP},
       </if>
       <if test="bookUserJobno != null">
         #{bookUserJobno,jdbcType=VARCHAR},
@@ -199,8 +217,14 @@
       <if test="record.timesId != null">
         times_id = #{record.timesId,jdbcType=VARCHAR},
       </if>
+      <if test="record.bookDate != null">
+        book_date = #{record.bookDate,jdbcType=DATE},
+      </if>
       <if test="record.bookId != null">
         book_id = #{record.bookId,jdbcType=INTEGER},
+      </if>
+      <if test="record.bookTimestamp != null">
+        book_timestamp = #{record.bookTimestamp,jdbcType=TIMESTAMP},
       </if>
       <if test="record.bookUserJobno != null">
         book_user_jobno = #{record.bookUserJobno,jdbcType=VARCHAR},
@@ -232,7 +256,9 @@
     update t_car_times_dtl
     set car_id = #{record.carId,jdbcType=INTEGER},
       times_id = #{record.timesId,jdbcType=VARCHAR},
+      book_date = #{record.bookDate,jdbcType=DATE},
       book_id = #{record.bookId,jdbcType=INTEGER},
+      book_timestamp = #{record.bookTimestamp,jdbcType=TIMESTAMP},
       book_user_jobno = #{record.bookUserJobno,jdbcType=VARCHAR},
       book_summ = #{record.bookSumm,jdbcType=VARCHAR},
       book_from = #{record.bookFrom,jdbcType=VARCHAR},
@@ -249,6 +275,9 @@
     <set>
       <if test="bookId != null">
         book_id = #{bookId,jdbcType=INTEGER},
+      </if>
+      <if test="bookTimestamp != null">
+        book_timestamp = #{bookTimestamp,jdbcType=TIMESTAMP},
       </if>
       <if test="bookUserJobno != null">
         book_user_jobno = #{bookUserJobno,jdbcType=VARCHAR},
@@ -274,10 +303,12 @@
     </set>
     where car_id = #{carId,jdbcType=INTEGER}
       and times_id = #{timesId,jdbcType=VARCHAR}
+      and book_date = #{bookDate,jdbcType=DATE}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.crs.reserve.entity.CarTimesDtl">
     update t_car_times_dtl
     set book_id = #{bookId,jdbcType=INTEGER},
+      book_timestamp = #{bookTimestamp,jdbcType=TIMESTAMP},
       book_user_jobno = #{bookUserJobno,jdbcType=VARCHAR},
       book_summ = #{bookSumm,jdbcType=VARCHAR},
       book_from = #{bookFrom,jdbcType=VARCHAR},
@@ -287,5 +318,6 @@
       check_flag = #{checkFlag,jdbcType=INTEGER}
     where car_id = #{carId,jdbcType=INTEGER}
       and times_id = #{timesId,jdbcType=VARCHAR}
+      and book_date = #{bookDate,jdbcType=DATE}
   </update>
 </mapper>

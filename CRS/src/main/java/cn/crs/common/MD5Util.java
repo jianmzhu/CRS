@@ -5,7 +5,7 @@ import java.security.MessageDigest;
 import org.junit.Test;
 /**
  * 
- * @author sfturing
+ * @author ZJM
  *
  */
 public class MD5Util {

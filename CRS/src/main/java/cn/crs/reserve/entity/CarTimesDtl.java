@@ -2,7 +2,13 @@ package cn.crs.reserve.entity;
 
 import java.util.Date;
 
-public class CarTimesDtl extends CarTimesDtlKey {
+public class CarTimesDtl {
+    private Integer carId;
+
+    private String timesId;
+
+    private Date bookDate;
+
     private Integer bookId;
 
     private Date bookTimestamp;
@@ -20,6 +26,30 @@ public class CarTimesDtl extends CarTimesDtlKey {
     private String checkUserJobno;
 
     private Integer checkFlag;
+
+    public Integer getCarId() {
+        return carId;
+    }
+
+    public void setCarId(Integer carId) {
+        this.carId = carId;
+    }
+
+    public String getTimesId() {
+        return timesId;
+    }
+
+    public void setTimesId(String timesId) {
+        this.timesId = timesId == null ? null : timesId.trim();
+    }
+
+    public Date getBookDate() {
+        return bookDate;
+    }
+
+    public void setBookDate(Date bookDate) {
+        this.bookDate = bookDate;
+    }
 
     public Integer getBookId() {
         return bookId;
