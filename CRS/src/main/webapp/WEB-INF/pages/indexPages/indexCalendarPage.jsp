@@ -32,9 +32,10 @@
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
                             </a>
-                            <a class="close-link">
+                            <!-- 日历不可以关闭，只可以收起，展开 -->
+                            <!-- <a class="close-link">
                                 <i class="fa fa-times"></i>
-                            </a>
+                            </a> -->
                         </div>
                     </div>
                     <div class="ibox-content">
@@ -77,7 +78,7 @@
 					center : "title",
 					right : "month,agendaWeek,agendaDay"
 				},
-				editable : true,
+				editable : false,//日历设置为不可以编辑
 				droppable : true,
 				drop : function(g, h) {
 					var f = $(this).data("eventObject");

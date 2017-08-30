@@ -109,6 +109,8 @@ drop table `t_book_car_dtl`;
 #车辆申请预约信息表(显示用户约车记录数据)
 CREATE TABLE IF NOT EXISTS `t_book_car_dtl` (
 `book_id`  int(16) NOT NULL AUTO_INCREMENT COMMENT '预约流水号',
+`book_date` DATE NOT NULL COMMENT '预约日期',
+`book_timestamp` TIMESTAMP NOT NULL COMMENT '预约时间戳',
 `car_id`  int(16) NOT NULL COMMENT '车辆ID',
 `book_times`  varchar(512) NOT NULL COMMENT '预约车的时间段，用逗号做分隔符' ,
 `book_user_jobno`  varchar(32) NOT NULL COMMENT '约车用户工号' ,
@@ -126,6 +128,8 @@ CREATE TABLE IF NOT EXISTS `t_car_times_dtl` (
 `car_id`  int(16) NOT NULL COMMENT '车辆ID',
 `times_id`  varchar(11) NOT NULL COMMENT '时间段id,只能为三级的时间段id',
 `book_id`  int(16) NOT NULL COMMENT '预约流水号',
+`book_date` DATE NOT NULL COMMENT '预约日期',
+`book_timestamp` TIMESTAMP NOT NULL COMMENT '预约时间戳',
 `book_user_jobno`  varchar(32) NOT NULL COMMENT '约车用户工号' ,
 `book_summ`  varchar(1024) NOT NULL COMMENT '约车摘要备注' ,
 `book_from`  varchar(256) NOT NULL COMMENT '约车起点' ,
@@ -133,5 +137,5 @@ CREATE TABLE IF NOT EXISTS `t_car_times_dtl` (
 `book_times`  varchar(512) NOT NULL COMMENT '预约车的时间段，用逗号做分隔符' ,
 `check_user_jobno`  varchar(32) COMMENT '审核用户工号，如果审核通过或者审核不通过，该值不为空' ,
 `check_flag` int(1) NOT NULL DEFAULT 2 COMMENT '0-未审核，1-审核通过，2-审核不通过' ,
-PRIMARY KEY (`car_id`,`times_id`)
+PRIMARY KEY (`car_id`,`times_id`,`book_date`)
 );
