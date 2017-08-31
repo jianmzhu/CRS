@@ -84,24 +84,6 @@ public class IndexPageController {
 	}
 	
 	/**
-	 * 首页日历显示
-	 * 
-	 * @return
-	 */
-	@RequestMapping(value = "/calendarPage", method = RequestMethod.GET)
-	public String homeCalendarPage(Model model) {
-		log.debug("用户主页日历显示...");
-		//传输最近两个月的数据，当月and下月
-		CarTimesDtlExample carTimesDtlExample = new CarTimesDtlExample();
-		Criteria criteria = carTimesDtlExample.createCriteria();
-		//查找上月至下月之间的已约车记录
-		criteria.andBookDateBetween(DateUtil.getFirstDayOfLastMonth(), DateUtil.getLastDayOfNextMonth());
-		List<CarTimesDtl> books= carTimesDtlService.selectByExample(carTimesDtlExample);
-		model.addAttribute("books", books);//预约的记录
-		return "indexPages/indexCalendarPage";
-	}
-	
-	/**
 	 * 预约车辆页面显示
 	 * 
 	 * @return
@@ -110,17 +92,6 @@ public class IndexPageController {
 	public String homeBookCarsPage() {
 		log.debug("预约车辆页面显示...");
 		return "bookCarsPages/bookCarsPage";
-	}
-	
-	/**
-	 * 用户联系我们
-	 * 
-	 * @return
-	 */
-	@RequestMapping(value = "/contact", method = RequestMethod.GET)
-	public String contact() {
-		log.debug("联系我们主页...");
-		return "contact/contactIndex";
 	}
 	
 	/**
@@ -136,7 +107,7 @@ public class IndexPageController {
 	}
 	
 	/**
-	 * 退出登录
+	 * 登录页面链接
 	 * 
 	 * @return
 	 */
@@ -145,4 +116,15 @@ public class IndexPageController {
 		log.debug("输入http://<ip>:<port>/CRS/[login|Login] 重定位到项目根地址...");
 		return "redirect:/";
 	}
+	
+	/**
+	 * 用户联系我们（暂时不用）
+	 * 
+	 * @return
+	 */
+//	@RequestMapping(value = "/contact", method = RequestMethod.GET)
+//	public String contact() {
+//		log.debug("联系我们主页...");
+//		return "contact/contactIndex";
+//	}
 }
