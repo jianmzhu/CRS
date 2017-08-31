@@ -74,11 +74,17 @@
 			var e = b.getFullYear();
 			$("#calendar").fullCalendar({
 				header : {
+					/* left : "prevYear,prev,next,nextYear", */
 					left : "prev,next",
 					center : "title",
-					right : "month,agendaWeek,agendaDay"
+					right : "month,agendaWeek,agendaDay"// /* ,basicWeek,basicDay */month（月视图），basicWeek（基本周视图，左侧不显示具体时间），basicDay（基本日视图，左侧不显示具体时间），agendaWeek（周视图），agendaDay（日视图）
 				},
-				editable : false,//日历设置为不可以编辑
+				theme : false,//是否允许使用jquery的ui主题，如果设置为true，则需要加载jquery ui相关css和js文件。
+				buttonIcons : false,//设置header中使用的prev, next等变量对应按钮的样式，只有当theme为true时才有效，如果你调用了jQuery ui样式但又不想使用它的图标样式，可以将此属性设置为false
+				/* firstDay:0, //设置一周中显示的第一天是哪天，周日是0，周一是1，类推。*/
+				/* isRTL : true,//设置为ture时则日历从右往左显示，貌似是针对阿拉伯人设计的。 */
+				/* editable : false,//日历设置为不可以编辑 */
+				/* weekNumbers : true,//是否在日历中显示周次(一年中的第几周)，如果设置为true，则会在月视图的左侧、周视图和日视图的左上角显示周数。 */
 				droppable : true,
 				drop : function(g, h) {
 					var f = $(this).data("eventObject");
@@ -90,7 +96,7 @@
 						$(this).remove()
 					}
 				},
-				events : [ {
+				/* events : [ {
 					title : "日事件",
 					start : new Date(e, a, 1)
 				}, {
@@ -126,11 +132,10 @@
 					start : new Date(e, a, 28),
 					end : new Date(e, a, 29),
 					url : "http://baidu.com/"
-				} ],
+				} ], */
 			})
 		});
 	</script>
-	<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
 </body>
 
 
