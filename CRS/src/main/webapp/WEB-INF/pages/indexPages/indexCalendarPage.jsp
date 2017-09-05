@@ -96,6 +96,7 @@
 						$(this).remove()
 					}
 				},
+				events: '${mybasePath}/calendarPage/getCalendarData', 
 				/* events : [ {
 					title : "日事件",
 					start : new Date(e, a, 1)
