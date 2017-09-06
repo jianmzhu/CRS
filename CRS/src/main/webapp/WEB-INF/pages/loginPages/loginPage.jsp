@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <title>车辆预约系统主页</title>
+    <title>公司资源管理系统主页</title>
 
-    <meta name="keywords" content="车辆预约系统">
-    <meta name="description" content="车辆预约系统是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+    <meta name="keywords" content="公司资源管理系统">
+    <meta name="description" content="公司资源管理系统是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
 
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html" />
@@ -36,7 +36,7 @@
                 <h1 class="logo-name">車</h1>
 
             </div>
-            <h3>欢迎使用车辆预约系统</h3>
+            <h3>欢迎使用公司资源管理系统</h3>
 
             <form class="m-t" role="form" method="post" action="${mybasePath}/login">
                 <div class="form-group">

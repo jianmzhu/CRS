@@ -40,11 +40,11 @@
 								aria-hidden="true">×</button>
 						</div>
 						<h2>	
-							车辆预约系统
+							公司资源管理系统
 							</h1>
 							<p>预约车辆</p>
 							<p>
-								<a class="btn btn-primary btn-lg" href="/ssm_pro/help/" >了解车辆预约系统</a>
+								<a class="btn btn-primary btn-lg" href="/ssm_pro/help/" >了解公司资源管理系统</a>
 							</p>
 					</div>
 
@@ -62,7 +62,7 @@
 					<div class="item">
 						<img alt="" src="${mybasePath}/resources/img/1.jpg" />
 						<div class="carousel-caption">
-							<p>车辆预约系统上线</p>
+							<p>公司资源管理系统上线</p>
 							<p>热烈庆祝预约系统上线。</p>
 						</div>
 					</div>
