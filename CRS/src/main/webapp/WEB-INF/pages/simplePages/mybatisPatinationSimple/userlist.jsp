@@ -5,10 +5,10 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bootstrap分页实例</title>
-<link href="<%=request.getContextPath()%>/bootstrapUI/css/bootstrap.min.css" rel="stylesheet">
-<script src="<%=request.getContextPath()%>/bootstrapUI/js/jquery.min.js"></script>
-<script src="<%=request.getContextPath()%>/bootstrapUI/js/bootstrap.min.js"></script>
-<script src="<%=request.getContextPath()%>/bootstrapUI/js/bootstrap-paginator.min.js"></script>
+<link href="<%=request.getContextPath()%>/static/paginator/js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="<%=request.getContextPath()%>/static/paginator/js/jQuery/jquery-2.1.4.min.js"></script>
+<script src="<%=request.getContextPath()%>/static/paginator/js/bootstrap/js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/static/paginator/js/bootstrap/js/bootstrap-paginator.min.js"></script>
 <style type="text/css">
 #queryDiv {
  margin-right: auto;
