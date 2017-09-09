@@ -18,7 +18,6 @@ public class BookCarDtlServiceImpl implements BookCarDtlService {
 	
 	@Override
 	public List<BookCarDtl> selectByExample(BookCarDtlExample example) {
-		// TODO Auto-generated method stub
 		return bookCarDtlMapper.selectByExample(example);
 	}
 

@@ -17,7 +17,6 @@ public class CarTimesDtlServiceImpl implements CarTimesDtlService{
 	
 	@Override
 	public List<CarTimesDtl> selectByExample(CarTimesDtlExample example) {
-		// TODO Auto-generated method stub
 		return carTimesDtlMapper.selectByExample(example);
 	}
 }

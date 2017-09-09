@@ -22,25 +22,21 @@ public class SysUserServiceImpl implements SysUserService {
 
 	@Override
 	public SysUser getUserInfoById(int id) {
-		// TODO Auto-generated method stub
 		return sysUserMapper.getUserInfoById(id);
 	}
 
 	@Override
 	public List<SysUser> getAllUserList() {
-		// TODO Auto-generated method stub
 		return sysUserMapper.getAllUserList();
 	}
 
 	@Override
 	public List<SysUser> findSysUserByType(int start, int size) {
-		// TODO Auto-generated method stub
 		return sysUserMapper.getUserListWithPaginated(start, size);
 	}
 
 	@Override
 	public int countSysUserByTypeNum() {
-		// TODO Auto-generated method stub
 		return sysUserMapper.countSysUserByTypeNum();
 	}
 

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.crs.reserve.dao.SysUserPaginationSimpleMapper">
+  <resultMap id="BaseResultMap" type="cn.crs.reserve.entity.SysUserPaginationSimple">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+<!--     <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
+ -->    
+ 	<result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
+    <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
+    <result column="user_weixin" jdbcType="VARCHAR" property="userWeixin" />
+    <result column="user_qq" jdbcType="VARCHAR" property="userQq" />
+    <result column="user_jobno" jdbcType="VARCHAR" property="userJobno" />
+    <result column="user_post" jdbcType="VARCHAR" property="userPost" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="is_lock" jdbcType="INTEGER" property="isLock" />
+  </resultMap>
+  
+  	<!-- 查询单条记录 -->
+	<select id="selectUserById" parameterType="int" resultMap="BaseResultMap">
+		SELECT * FROM t_user WHERE USER_ID = #{userId}
+	</select>
+  
+  	<select id="selectUserByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT *
+		FROM t_user
+		WHERE 1 = 1
+		<if test="userName != null and userName !=''">
+		    AND USER_NAME = #{userName,jdbcType=VARCHAR}
+		</if>
+		ORDER BY USER_ID
+	</select>
+	
+  	<resultMap type="cn.crs.reserve.entity.SysUserPaginationSimple" id="resultSysUser">
+		<id column="user_id" jdbcType="INTEGER" property="userId" />
+	    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+	    <!-- <result column="user_password" jdbcType="VARCHAR" property="userPassword" /> -->
+	    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
+	    <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
+	    <result column="user_weixin" jdbcType="VARCHAR" property="userWeixin" />
+	    <result column="user_qq" jdbcType="VARCHAR" property="userQq" />
+	    <result column="user_jobno" jdbcType="VARCHAR" property="userJobno" />
+	    <result column="user_post" jdbcType="VARCHAR" property="userPost" />
+	    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+	    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+	    <result column="status" jdbcType="INTEGER" property="status" />
+	    <result column="is_lock" jdbcType="INTEGER" property="isLock" />
+		<!-- property="sysRoles" 对应SysRole POJO里面的属性名， ofType="cn.crs.reserve.entity.SysRole" 对应类， column="role_id"对应post表中的person_id建，与t_role表的role_id做关联 -->
+		<!-- collection表示多的一方，在一的一方有list参数 -->
+		<collection property="sysRoles" ofType="cn.crs.reserve.entity.SysRole" column="role_id">
+			<!-- 下述的键可以简化不需要javaType，jdbcType -->
+			<id property="roleId" column="role_id" javaType="int" jdbcType="INTEGER" />
+			<result property="roleName" column="role_name" javaType="string"
+				jdbcType="VARCHAR" />
+		</collection>
+	</resultMap>
+  	
+	<select id="getAllUserList" resultMap="resultSysUser">
+    	select x1.user_id,x1.user_name,x1.user_phone,x1.user_email,
+		x1.user_weixin,x1.user_qq,x1.user_jobno,x1.user_post,x1.create_time,x1.update_time,
+		x1.status,x1.is_lock,x3.role_id,x3.role_name
+		from t_user x1
+		left join t_user_role_relat x2 on x2.user_id = x1.user_id
+		left join t_role x3 on x3.role_id = x2.role_id
+	</select>
+</mapper>
