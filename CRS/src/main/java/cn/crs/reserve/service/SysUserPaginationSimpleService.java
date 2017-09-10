@@ -25,4 +25,13 @@ public interface SysUserPaginationSimpleService {
 	 * @return
 	 */
 	public PagedResult<SysUserPaginationSimple> queryByPage(String userName,Integer pageNo,Integer pageSize);
+	
+	/**
+	 * 
+	 * @param userName 查询条件，可为空
+	 * @param pageOffset 查询条件，可为空，默认取0
+	 * @param pageSize 查询条件，可为空，默认取10
+	 * @return
+	 */
+	public PagedResult<SysUserPaginationSimple> queryByPageOffset(String userName,Integer pageOffset,Integer pageSize);
 }

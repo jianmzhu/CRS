@@ -80,11 +80,11 @@ public class JsonBaseController {
      * @param obj 输出对象
      * @return 输出成功的JSON格式数据
      */
-	public String responseDataTablesSuccess(PagedResult<?> obj) {
+	public String responseDataTablesSuccess(PagedResult<?> obj,Map<String,Object> extraData) {
 		JSONObject jsonObj = null;
 
 		Map<String, Object> pageMap = new HashMap<String, Object>();
-		pageMap.put("draw", 0);// 是否重绘页面
+		pageMap.put("draw", extraData.get("draw"));// 是否重绘页面
 		pageMap.put("recordsTotal", obj.getTotal());// 总页数
 		pageMap.put("recordsFiltered", obj.getTotal());// 过滤后总页数
 		pageMap.put("data", obj.getDataList());

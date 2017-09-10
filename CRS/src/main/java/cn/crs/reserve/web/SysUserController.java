@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,11 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.github.pagehelper.Page;
 
 import cn.crs.common.PageUtils;
 import cn.crs.common.pagination.PagedResult;
@@ -40,10 +42,16 @@ public class SysUserController extends JsonBaseController{
 
 	@Autowired
 	private SysUserService sysUserService;
-	@Resource
+	@Autowired
 	private SysUserPaginationSimpleService sysUserPaginationSimpleService;
 	@Autowired
 	private PageUtils pageUtils;
+	@Autowired
+	private HttpSession httpSession;
+	@Autowired
+	private HttpServletRequest httpServletRequest;
+	@Autowired
+	private HttpServletResponse httpServletResponse;
 
 	/**
 	 * 用户分页查询
@@ -103,14 +111,23 @@ public class SysUserController extends JsonBaseController{
      */
 	@RequestMapping(value = "/getSysUser/list", method = RequestMethod.POST)
 	@ResponseBody
-	public String sysUserListByPaginator(Integer pageNumber,Integer pageSize ,String userName) {
-		log.info("分页查询用户信息列表请求入参：pageNumber{},pageSize{}", pageNumber,pageSize);
+	public String sysUserListByPaginator(@RequestBody Map<String,Object> pageJsonMap) {
+		log.info("分页查询用户信息列表请求入参：pageJsonMap{}", pageJsonMap);
+		
+		String userName = "";
+		Integer draw = Integer.parseInt(pageJsonMap.get("sEcho")+"");
+		Integer pageStart = Integer.parseInt(pageJsonMap.get("iDisplayStart")+"");//查询第几条
+		Integer pageSize = Integer.parseInt(pageJsonMap.get("iDisplayLength")+"");//每页长度
+		Integer pageNumber = (pageStart + 1)/pageSize + 1;//页数
+		
+		log.info("处理后，页面参数为：pageStart{},pageSize{}", pageStart,pageSize);
+		log.info("处理后，页面参数为：pageNumber{}", pageNumber);
+		
+		Map<String,Object> extraData = new HashMap<String,Object>();
+		extraData.put("draw", draw);
 		try {
-			PagedResult<SysUserPaginationSimple> pageResult = sysUserPaginationSimpleService.queryByPage(userName, pageNumber,pageSize);
-    	    
-			
-			
-			return responseDataTablesSuccess(pageResult);
+			PagedResult<SysUserPaginationSimple> pageResult = sysUserPaginationSimpleService.queryByPageOffset(userName, pageStart,pageSize);
+			return responseDataTablesSuccess(pageResult, extraData);
     	} catch (Exception e) {
 			return responseFail(e.getMessage());
 		}
