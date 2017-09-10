@@ -1,6 +1,11 @@
 package cn.crs.reserve.web;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,9 +15,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.github.pagehelper.Page;
 
 import cn.crs.common.PageUtils;
+import cn.crs.common.pagination.PagedResult;
 import cn.crs.reserve.entity.SysUser;
+import cn.crs.reserve.entity.SysUserPaginationSimple;
+import cn.crs.reserve.service.SysUserPaginationSimpleService;
 import cn.crs.reserve.service.SysUserService;
 
 /**
@@ -21,14 +32,16 @@ import cn.crs.reserve.service.SysUserService;
  *
  * @date 2017年6月2日
  */
-@SuppressWarnings("unused")
 @Controller
-public class SysUserController {
-	
-	private static Logger log = LoggerFactory.getLogger(SysUserController.class);
+public class SysUserController extends JsonBaseController{
+
+	private static Logger log = LoggerFactory
+			.getLogger(SysUserController.class);
 
 	@Autowired
 	private SysUserService sysUserService;
+	@Resource
+	private SysUserPaginationSimpleService sysUserPaginationSimpleService;
 	@Autowired
 	private PageUtils pageUtils;
 
@@ -46,10 +59,12 @@ public class SysUserController {
 		if (pageUtils.getCurrentPage() == 0) {
 			start = 0;
 		} else {
-			start = pageUtils.getPageRecord() * (pageUtils.getCurrentPage() - 1);
+			start = pageUtils.getPageRecord()
+					* (pageUtils.getCurrentPage() - 1);
 		}
 		// 分页查询用户信息
-		List<SysUser> users = sysUserService.findSysUserByType(start, pageUtils.getPageRecord());
+		List<SysUser> users = sysUserService.findSysUserByType(start,
+				pageUtils.getPageRecord());
 		model.addAttribute("users", users);
 		model.addAttribute("pages", pageUtils);
 		return "notice/noticeIndex";
@@ -61,23 +76,44 @@ public class SysUserController {
 	 * @return
 	 */
 	@RequestMapping(value = "/sysUserInfo/{id}", method = RequestMethod.GET)
-	public String sysUserInfoShow(Model model, @PathVariable(value = "id") int id) {
+	public String sysUserInfoShow(Model model,
+			@PathVariable(value = "id") int id) {
 		SysUser sysUser = sysUserService.getUserInfoById(id);
 		model.addAttribute("sysUser", sysUser);
 		return "sysUser/userInfo";
 	}
-	
+
 	/**
-	 * 项目跳转到 用户记录页面 
+	 * 项目跳转到 用户记录页面
 	 * 
 	 * @return
 	 */
 	@RequestMapping(value = "/AllSysUser", method = RequestMethod.GET)
 	public String sysUserList(Model model) {
 		// 查询所有通知
-		List<SysUser> users = sysUserService.getAllUserList();
-		model.addAttribute("users", users);
-		return "userInfo/allSysUserPage";
+//		List<SysUser> users = sysUserService.getAllUserList();
+//		model.addAttribute("users", users);
+		return "userInfo/sysUserList";
 	}
-	
+
+	/**
+     * 分页查询用户信息（ajax的post请求）
+     * @param page
+     * @return
+     */
+	@RequestMapping(value = "/getSysUser/list", method = RequestMethod.POST)
+	@ResponseBody
+	public String sysUserListByPaginator(Integer pageNumber,Integer pageSize ,String userName) {
+		log.info("分页查询用户信息列表请求入参：pageNumber{},pageSize{}", pageNumber,pageSize);
+		try {
+			PagedResult<SysUserPaginationSimple> pageResult = sysUserPaginationSimpleService.queryByPage(userName, pageNumber,pageSize);
+    	    
+			
+			
+			return responseDataTablesSuccess(pageResult);
+    	} catch (Exception e) {
+			return responseFail(e.getMessage());
+		}
+	}
+
 }

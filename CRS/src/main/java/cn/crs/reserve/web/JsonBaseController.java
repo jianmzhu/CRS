@@ -8,9 +8,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import cn.crs.common.constants.HttpConstants;
+import cn.crs.common.pagination.PagedResult;
 import cn.crs.common.processor.JsonDateValueProcessor;
+import cn.crs.reserve.entity.SysUserPaginationSimple;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Controller基类
@@ -64,6 +70,34 @@ public class JsonBaseController {
 		    logger.info("后端返回数据：" + jsonObj);
 		    jsonObj.element(HttpConstants.RESPONSE_RESULT_FLAG_ISERROR, false);
 		    jsonObj.element(HttpConstants.SERVICE_RESPONSE_RESULT_MSG, "");
+		}
+		logger.info("输出结果：{}", jsonObj.toString());
+		return jsonObj.toString();
+	}
+	
+	/**
+     * 返回DataTables的成功json
+     * @param obj 输出对象
+     * @return 输出成功的JSON格式数据
+     */
+	public String responseDataTablesSuccess(PagedResult<?> obj) {
+		JSONObject jsonObj = null;
+
+		Map<String, Object> pageMap = new HashMap<String, Object>();
+		pageMap.put("draw", 0);// 是否重绘页面
+		pageMap.put("recordsTotal", obj.getTotal());// 总页数
+		pageMap.put("recordsFiltered", obj.getTotal());// 过滤后总页数
+		pageMap.put("data", obj.getDataList());
+
+		if (pageMap != null) {
+			logger.info("后端返回对象：{}", pageMap);
+			JsonConfig jsonConfig = new JsonConfig();
+			jsonConfig.registerJsonValueProcessor(Date.class,
+					new JsonDateValueProcessor());
+			jsonObj = JSONObject.fromObject(pageMap, jsonConfig);
+			logger.info("后端返回数据：" + jsonObj);
+			jsonObj.element(HttpConstants.RESPONSE_RESULT_FLAG_ISERROR, false);
+			jsonObj.element(HttpConstants.SERVICE_RESPONSE_RESULT_MSG, "");
 		}
 		logger.info("输出结果：{}", jsonObj.toString());
 		return jsonObj.toString();
