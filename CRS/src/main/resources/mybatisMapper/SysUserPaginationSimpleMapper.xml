@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.crs.reserve.dao.SysUserPaginationSimpleMapper">
-  <resultMap id="BaseResultMap" type="cn.crs.reserve.entity.SysUserPaginationSimple">
+  <resultMap id="BaseResultMap" type="SysUserPaginationSimple">
     <id column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
 <!--     <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
@@ -33,7 +33,7 @@
 		ORDER BY USER_ID
 	</select>
 	
-  	<resultMap type="cn.crs.reserve.entity.SysUserPaginationSimple" id="resultSysUser">
+  	<resultMap type="SysUserPaginationSimple" id="resultSysUser">
 		<id column="user_id" jdbcType="INTEGER" property="userId" />
 	    <result column="user_name" jdbcType="VARCHAR" property="userName" />
 	    <!-- <result column="user_password" jdbcType="VARCHAR" property="userPassword" /> -->
@@ -47,9 +47,9 @@
 	    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
 	    <result column="status" jdbcType="INTEGER" property="status" />
 	    <result column="is_lock" jdbcType="INTEGER" property="isLock" />
-		<!-- property="sysRoles" 对应SysRole POJO里面的属性名， ofType="cn.crs.reserve.entity.SysRole" 对应类， column="role_id"对应post表中的person_id建，与t_role表的role_id做关联 -->
+		<!-- property="sysRoles" 对应SysRole POJO里面的属性名， ofType="SysRole" 对应类， column="role_id"对应post表中的person_id建，与t_role表的role_id做关联 -->
 		<!-- collection表示多的一方，在一的一方有list参数 -->
-		<collection property="sysRoles" ofType="cn.crs.reserve.entity.SysRole" column="role_id">
+		<collection property="sysRoles" ofType="SysRole" column="role_id">
 			<!-- 下述的键可以简化不需要javaType，jdbcType -->
 			<id property="roleId" column="role_id" javaType="int" jdbcType="INTEGER" />
 			<result property="roleName" column="role_name" javaType="string"

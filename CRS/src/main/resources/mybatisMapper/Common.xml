@@ -22,7 +22,7 @@
 	</select>
 
 
-	<insert id="addEntity" parameterType="cn.crs.reserve.entity.Params"
+	<insert id="addEntity" parameterType="Params"
 		useGeneratedKeys="true" keyProperty="id">
 		insert into ${tables}
 		<foreach collection="insertMap.keys" item="k" index="index" open="(" separator="," close=")">
@@ -36,7 +36,7 @@
 	</insert>
 
 
-	<insert id="batchAdd" parameterType="cn.crs.reserve.entity.Params">
+	<insert id="batchAdd" parameterType="Params">
 		insert into ${tables}
 		<foreach collection="insertMap.keys" item="k" open="("
 			separator="," close=")">
@@ -51,7 +51,7 @@
 		</foreach>
 	</insert>
 	
-	<delete id="batchDelete" parameterType="cn.crs.reserve.entity.Params">
+	<delete id="batchDelete" parameterType="Params">
 		DELETE FROM ${tables} WHERE ${deleteCoulumnName}
 		<foreach collection="deleteList" item="id" index="index"
            open="IN(" close=")" separator=",">
