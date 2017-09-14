@@ -1,5 +1,7 @@
 package cn.crs.reserve.web;
 
+import java.beans.IntrospectionException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,8 +24,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.crs.common.PageUtils;
+import cn.crs.common.datatables.entity.DataTablesParam;
+import cn.crs.common.datatables.entity.DataTablesUtil;
 import cn.crs.common.pagination.PagedResult;
 import cn.crs.reserve.entity.SysUser;
+import cn.crs.reserve.entity.SysUserExample;
+import cn.crs.reserve.entity.SysUserExample.Criteria;
 import cn.crs.reserve.entity.SysUserPaginationSimple;
 import cn.crs.reserve.service.SysUserPaginationSimpleService;
 import cn.crs.reserve.service.SysUserService;
@@ -42,8 +48,8 @@ public class SysUserController extends JsonBaseController{
 
 	@Autowired
 	private SysUserService sysUserService;
-	@Autowired
-	private SysUserPaginationSimpleService sysUserPaginationSimpleService;
+//	@Autowired
+//	private SysUserPaginationSimpleService sysUserPaginationSimpleService;
 	@Autowired
 	private PageUtils pageUtils;
 	@Autowired
@@ -112,21 +118,45 @@ public class SysUserController extends JsonBaseController{
 	@RequestMapping(value = "/getSysUser/list", method = RequestMethod.POST)
 	@ResponseBody
 	public String sysUserListByPaginator(@RequestBody Map<String,Object> pageJsonMap) {
-		log.info("分页查询用户信息列表请求入参：pageJsonMap{}", pageJsonMap);
+		log.debug("分页查询用户信息列表请求入参：pageJsonMap{}", pageJsonMap);
 		
-		String userName = "";
 		Integer draw = Integer.parseInt(pageJsonMap.get("sEcho")+"");
 		Integer pageStart = Integer.parseInt(pageJsonMap.get("iDisplayStart")+"");//查询第几条
 		Integer pageSize = Integer.parseInt(pageJsonMap.get("iDisplayLength")+"");//每页长度
 		Integer pageNumber = (pageStart + 1)/pageSize + 1;//页数
+		DataTablesParam dataTablesParam = null;
+		try {
+			dataTablesParam = DataTablesUtil.getInstance().createDataTablesParam(pageJsonMap);
+		} catch (IllegalAccessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (InstantiationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (InvocationTargetException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IntrospectionException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
-		log.info("处理后，页面参数为：pageStart{},pageSize{}", pageStart,pageSize);
-		log.info("处理后，页面参数为：pageNumber{}", pageNumber);
+		log.debug("处理后，页面参数为：pageStart{},pageSize{}", pageStart,pageSize);
+		log.debug("处理后，页面参数为：pageNumber{}", pageNumber);
 		
+		SysUserExample sysUserExample = new SysUserExample();
+		if(dataTablesParam!=null){
+			log.debug("dataTablesParam对象为：" + dataTablesParam.toString());
+			String orderByClause = DataTablesUtil.getOrderByClause(dataTablesParam);
+			log.debug("orderByClause为：" + orderByClause);
+			sysUserExample.setOrderByClause(orderByClause);
+		}
 		Map<String,Object> extraData = new HashMap<String,Object>();
 		extraData.put("draw", draw);
+		
 		try {
-			PagedResult<SysUserPaginationSimple> pageResult = sysUserPaginationSimpleService.queryByPageOffset(userName, pageStart,pageSize);
+//			PagedResult<SysUserPaginationSimple> pageResult = sysUserPaginationSimpleService.queryByPageOffset(userName, pageStart,pageSize);
+			PagedResult<SysUser> pageResult = sysUserService.selectByExampleAndOffsetPage(sysUserExample, pageStart, pageSize);
 			return responseDataTablesSuccess(pageResult, extraData);
     	} catch (Exception e) {
 			return responseFail(e.getMessage());

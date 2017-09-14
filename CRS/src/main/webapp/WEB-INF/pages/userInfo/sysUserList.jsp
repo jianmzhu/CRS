@@ -107,7 +107,7 @@
 			$(document).ready(function() {
 					$('#sysUserList').DataTable({
 						"sAjaxSource" : url,
-						//"processing" : true,
+						"bprocessing" : true,
 						"bServerSide" : true,
 						"fnServerData" : function(sSource, aoData, fnCallback) {
 							console.log(111)
@@ -145,8 +145,8 @@
 				            "<button id='del' class='btn btn-primary' type='button'>删除</button>"
 				        }, {
 				            "targets": 0,//hide one cell
-				            "visible": false,
-				            "searchable": false
+				            "visible": true,
+				            "searchable": true
 				        }]
 					});
 				});

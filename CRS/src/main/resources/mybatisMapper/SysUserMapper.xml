@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.crs.reserve.dao.SysUserMapper">
-  <resultMap id="BaseResultMap" type="cn.crs.reserve.entity.SysUser">
+  <resultMap id="BaseResultMap" type="SysUser">
     <id column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
@@ -16,7 +16,7 @@
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="is_lock" jdbcType="INTEGER" property="isLock" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.crs.reserve.entity.SysUser">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="SysUser">
     <result column="user_description" jdbcType="LONGVARCHAR" property="userDescription" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -84,7 +84,7 @@
   <sql id="Blob_Column_List">
     user_description
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="cn.crs.reserve.entity.SysUserExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="SysUserExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -101,7 +101,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="cn.crs.reserve.entity.SysUserExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="SysUserExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -128,13 +128,13 @@
     delete from t_user
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="cn.crs.reserve.entity.SysUserExample">
+  <delete id="deleteByExample" parameterType="SysUserExample">
     delete from t_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="cn.crs.reserve.entity.SysUser">
+  <insert id="insert" parameterType="SysUser">
     insert into t_user (user_id, user_name, user_password, 
       user_phone, user_email, user_weixin, 
       user_qq, user_jobno, user_post, 
@@ -146,7 +146,7 @@
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
       #{isLock,jdbcType=INTEGER}, #{userDescription,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="cn.crs.reserve.entity.SysUser">
+  <insert id="insertSelective" parameterType="SysUser">
     insert into t_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -237,7 +237,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="cn.crs.reserve.entity.SysUserExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="SysUserExample" resultType="java.lang.Long">
     select count(*) from t_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -332,7 +332,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.crs.reserve.entity.SysUser">
+  <update id="updateByPrimaryKeySelective" parameterType="SysUser">
     update t_user
     <set>
       <if test="userName != null">
@@ -377,7 +377,7 @@
     </set>
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.crs.reserve.entity.SysUser">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="SysUser">
     update t_user
     set user_name = #{userName,jdbcType=VARCHAR},
       user_password = #{userPassword,jdbcType=VARCHAR},
@@ -394,7 +394,7 @@
       user_description = #{userDescription,jdbcType=LONGVARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.crs.reserve.entity.SysUser">
+  <update id="updateByPrimaryKey" parameterType="SysUser">
     update t_user
     set user_name = #{userName,jdbcType=VARCHAR},
       user_password = #{userPassword,jdbcType=VARCHAR},
@@ -412,7 +412,7 @@
   </update>
   
   <!-- 与Post表联查结果 一对多关系 -->
-	<resultMap type="cn.crs.reserve.entity.SysUser" id="resultSysUser">
+	<resultMap type="SysUser" id="resultSysUser">
 		<id column="user_id" jdbcType="INTEGER" property="userId" />
 	    <result column="user_name" jdbcType="VARCHAR" property="userName" />
 	    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
@@ -426,9 +426,9 @@
 	    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
 	    <result column="status" jdbcType="INTEGER" property="status" />
 	    <result column="is_lock" jdbcType="INTEGER" property="isLock" />
-		<!-- property="sysRoles" 对应SysRole POJO里面的属性名， ofType="cn.crs.reserve.entity.SysRole" 对应类， column="role_id"对应post表中的person_id建，与t_role表的role_id做关联 -->
+		<!-- property="sysRoles" 对应SysRole POJO里面的属性名， ofType="SysRole" 对应类， column="role_id"对应post表中的person_id建，与t_role表的role_id做关联 -->
 		<!-- collection表示多的一方，在一的一方有list参数 -->
-		<collection property="sysRoles" ofType="cn.crs.reserve.entity.SysRole" column="role_id">
+		<collection property="sysRoles" ofType="SysRole" column="role_id">
 			<!-- 下述的键可以简化不需要javaType，jdbcType -->
 			<id property="roleId" column="role_id" javaType="int" jdbcType="INTEGER" />
 			<result property="roleName" column="role_name" javaType="string"
@@ -465,7 +465,7 @@
 		left join t_role x3 on x3.role_id = x2.role_id
 	</select>
 	
-	<select id="getUserListWithPaginated" resultType="cn.crs.reserve.entity.SysUser">
+	<select id="getUserListWithPaginated" resultType="SysUser">
 		SELECT
 		* FROM `t_user` limit #{start},#{size}
 	</select>
