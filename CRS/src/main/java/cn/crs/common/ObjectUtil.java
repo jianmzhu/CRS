@@ -80,9 +80,8 @@ public class ObjectUtil {
         return obj;  
     }
     
-    @SuppressWarnings("unchecked")  
     public static void setProperty(Object obj,String propertyName,Object value){  
-        Class clazz = obj.getClass();//获取对象的类型  
+        Class<? extends Object> clazz = obj.getClass();//获取对象的类型  
         PropertyDescriptor pd = PropertyUtil.getPropertyDescriptor(clazz,propertyName);//获取 clazz 类型中的 propertyName 的属性描述器  
         Method setMethod = pd.getWriteMethod();//从属性描述器中获取 set 方法  
         try {  

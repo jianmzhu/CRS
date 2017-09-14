@@ -2,12 +2,10 @@ package cn.crs.reserve.web;
 
 import java.beans.IntrospectionException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -29,9 +27,6 @@ import cn.crs.common.datatables.entity.DataTablesUtil;
 import cn.crs.common.pagination.PagedResult;
 import cn.crs.reserve.entity.SysUser;
 import cn.crs.reserve.entity.SysUserExample;
-import cn.crs.reserve.entity.SysUserExample.Criteria;
-import cn.crs.reserve.entity.SysUserPaginationSimple;
-import cn.crs.reserve.service.SysUserPaginationSimpleService;
 import cn.crs.reserve.service.SysUserService;
 
 /**

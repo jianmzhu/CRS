@@ -5,9 +5,8 @@ import java.beans.PropertyDescriptor;
 
 import org.apache.commons.lang3.StringUtils;
   
-@SuppressWarnings("rawtypes")  
 public class PropertyUtil {  
-    public static PropertyDescriptor getPropertyDescriptor(Class clazz, String propertyName) {  
+    public static PropertyDescriptor getPropertyDescriptor(Class<? extends Object> clazz, String propertyName) {  
         StringBuffer sb = new StringBuffer();//构建一个可变字符串用来构建方法名称  
         Method setMethod = null;  
         Method getMethod = null;  
@@ -40,7 +39,7 @@ public class PropertyUtil {
     }  
 
     public static void setProperty(Object obj,String propertyName,Object value){  
-        Class clazz = obj.getClass();//获取对象的类型  
+        Class<? extends Object> clazz = obj.getClass();//获取对象的类型  
         PropertyDescriptor pd = getPropertyDescriptor(clazz,propertyName);//获取 clazz 类型中的 propertyName 的属性描述器  
         Method setMethod = pd.getWriteMethod();//从属性描述器中获取 set 方法  
         try {  
@@ -52,7 +51,7 @@ public class PropertyUtil {
       
    
     public static Object getProperty(Object obj, String propertyName){  
-	Class clazz = obj.getClass();//获取对象的类型  
+	Class<? extends Object> clazz = obj.getClass();//获取对象的类型  
        PropertyDescriptor pd = getPropertyDescriptor(clazz,propertyName);//获取 clazz 类型中的 propertyName 的属性描述器  
        Method getMethod = pd.getReadMethod();//从属性描述器中获取 get 方法  
        Object value =null ;  
