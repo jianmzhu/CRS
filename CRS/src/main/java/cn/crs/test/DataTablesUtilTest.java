@@ -69,7 +69,7 @@ public class DataTablesUtilTest {
 		map.put("bSortable_6", true);
 		
 		
-//		System.out.println(DataTablesUtil.getInstance().createDataTablesParam(map));
+		System.out.println(DataTablesUtil.getInstance().createDataTablesParam(map));
 		
 		System.out.println(DataTablesUtil.getOrderByClause(DataTablesUtil.getInstance().createDataTablesParam(map)));
 	}
