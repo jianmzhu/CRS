@@ -21,10 +21,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import cn.crs.common.PageUtils;
 import cn.crs.common.datatables.entity.DataTablesParam;
 import cn.crs.common.datatables.entity.DataTablesUtil;
 import cn.crs.common.pagination.PagedResult;
+import cn.crs.common.util.PageUtils;
 import cn.crs.reserve.entity.SysUser;
 import cn.crs.reserve.entity.SysUserExample;
 import cn.crs.reserve.service.SysUserService;

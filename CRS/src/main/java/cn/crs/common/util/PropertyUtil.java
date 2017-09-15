@@ -1,4 +1,4 @@
-package cn.crs.common;
+package cn.crs.common.util;
 import java.lang.reflect.Method;  
 import java.lang.reflect.Field;  
 import java.beans.PropertyDescriptor;  

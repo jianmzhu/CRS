@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cn.crs.common.PageUtils;
+import cn.crs.common.util.PageUtils;
 import cn.crs.reserve.entity.Notice;
 import cn.crs.reserve.service.NoticeService;
 

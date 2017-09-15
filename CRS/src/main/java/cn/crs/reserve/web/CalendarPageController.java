@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.alibaba.fastjson.JSON;
 
-import cn.crs.common.DateUtil;
+import cn.crs.common.util.DateUtil;
 import cn.crs.reserve.entity.CarTimesDtl;
 import cn.crs.reserve.entity.CarTimesDtlExample;
 import cn.crs.reserve.entity.CarTimesDtlExample.Criteria;
