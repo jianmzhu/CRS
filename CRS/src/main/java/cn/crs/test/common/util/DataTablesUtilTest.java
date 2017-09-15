@@ -1,4 +1,4 @@
-package cn.crs.test;
+package cn.crs.test.common.util;
 import java.beans.IntrospectionException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
