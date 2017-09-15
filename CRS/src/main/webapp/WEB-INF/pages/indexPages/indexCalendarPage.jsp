@@ -45,12 +45,12 @@
             </div>
         </div>
     </div>
-    <script src="${mybasePath}/bootstrapUI/js/jquery.min.js?v=2.1.4"></script>
-    <script src="${mybasePath}/bootstrapUI/js/bootstrap.min.js?v=3.3.6"></script>
-	<script src="${mybasePath}/bootstrapUI/js/content.min.js?v=1.0.0"></script>
-	<script src="${mybasePath}/bootstrapUI/js/jquery-ui.custom.min.js"></script>
-	<script src="${mybasePath}/bootstrapUI/js/plugins/iCheck/icheck.min.js"></script>
-	<script src="${mybasePath}/bootstrapUI/js/plugins/fullcalendar/fullcalendar.min.js"></script>
+    <script src="${mybasePath}/static/js/jquery.min.js?v=2.1.4"></script>
+    <script src="${mybasePath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+	<script src="${mybasePath}/static/js/content.min.js?v=1.0.0"></script>
+	<script src="${mybasePath}/static/js/jquery-ui.custom.min.js"></script>
+	<script src="${mybasePath}/static/js/plugins/iCheck/icheck.min.js"></script>
+	<script src="${mybasePath}/static/js/plugins/fullcalendar/fullcalendar.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			$(".i-checks").iCheck({

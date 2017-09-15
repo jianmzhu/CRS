@@ -34,7 +34,7 @@
                 <ul class="nav" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <span><img alt="image" class="img-circle" src="${mybasePath}/bootstrapUI/img/profile_small.jpg" /></span>
+                            <span><img alt="image" class="img-circle" src="${mybasePath}/static/img/profile_small.jpg" /></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
                                     <span class="block m-t-xs"><strong class="font-bold">${user.userName}</strong></span>
@@ -235,13 +235,13 @@
        
     </div>
     
-    <script src="${mybasePath}/bootstrapUI/js/jquery.min.js?v=2.1.4"></script>
-	<script src="${mybasePath}/bootstrapUI/js/bootstrap.min.js?v=3.3.6"></script>
-	<script src="${mybasePath}/bootstrapUI/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-	<script src="${mybasePath}/bootstrapUI/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-	<script src="${mybasePath}/bootstrapUI/js/plugins/layer/layer.min.js"></script>
-	<script src="${mybasePath}/bootstrapUI/js/hplus.min.js?v=4.1.0"></script>
-	<script type="text/javascript" src="${mybasePath}/bootstrapUI/js/contabs.min.js"></script>
-	<script src="${mybasePath}/bootstrapUI/js/plugins/pace/pace.min.js"></script>
+    <script src="${mybasePath}/static/js/jquery.min.js?v=2.1.4"></script>
+	<script src="${mybasePath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+	<script src="${mybasePath}/static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+	<script src="${mybasePath}/static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="${mybasePath}/static/js/plugins/layer/layer.min.js"></script>
+	<script src="${mybasePath}/static/js/hplus.min.js?v=4.1.0"></script>
+	<script type="text/javascript" src="${mybasePath}/static/js/contabs.min.js"></script>
+	<script src="${mybasePath}/static/js/plugins/pace/pace.min.js"></script>
 </body>
 </html>

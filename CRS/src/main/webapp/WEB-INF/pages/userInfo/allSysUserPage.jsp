@@ -22,9 +22,9 @@
     <jsp:include page="../headPages/head_common.jsp" />
     
     <!-- Data Tables -->
-    <link href="${mybasePath}/bootstrapUI/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
-    <link href="${mybasePath}/bootstrapUI/css/animate.min.css" rel="stylesheet">
-    <link href="${mybasePath}/bootstrapUI/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <link href="${mybasePath}/static/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="${mybasePath}/static/css/animate.min.css" rel="stylesheet">
+    <link href="${mybasePath}/static/css/style.min862f.css?v=4.1.0" rel="stylesheet">
 </head>
 
 <body class="gray-bg">
@@ -90,12 +90,12 @@
         </div>
     </div>
     <!-- Data Tables -->
-    <script src="${mybasePath}/bootstrapUI/js/jquery.min.js?v=2.1.4"></script>
-    <script src="${mybasePath}/bootstrapUI/js/bootstrap.min.js?v=3.3.6"></script>
-    <script src="${mybasePath}/bootstrapUI/js/plugins/jeditable/jquery.jeditable.js"></script>
-    <script src="${mybasePath}/bootstrapUI/js/plugins/dataTables/jquery.dataTables.js"></script>
-    <script src="${mybasePath}/bootstrapUI/js/plugins/dataTables/dataTables.bootstrap.js"></script>
-    <script src="${mybasePath}/bootstrapUI/js/content.min.js?v=1.0.0"></script>
+    <script src="${mybasePath}/static/js/jquery.min.js?v=2.1.4"></script>
+    <script src="${mybasePath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="${mybasePath}/static/js/plugins/jeditable/jquery.jeditable.js"></script>
+    <script src="${mybasePath}/static/js/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="${mybasePath}/static/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+    <script src="${mybasePath}/static/js/content.min.js?v=1.0.0"></script>
 	
 </body>
 
