@@ -1,7 +1,7 @@
-package cn.crs.common.util.blockThreadPool.test;
+package cn.crs.test.common.util.blockThreadPool;
 
 import cn.crs.common.util.blockThreadPool.ArrayBlockingPool;
-import cn.crs.common.util.blockThreadPool.test.factory.PoolEntityObjectFactory;
+import cn.crs.test.common.util.blockThreadPool.factory.PoolEntityObjectFactory;
 
 public class RunTest {
 

@@ -1,4 +1,4 @@
-package cn.crs.common.util.blockThreadPool.test.entity;
+package cn.crs.test.common.util.blockThreadPool.entity;
 
 /**
  * Created by zengyufei on 2016/11/25.

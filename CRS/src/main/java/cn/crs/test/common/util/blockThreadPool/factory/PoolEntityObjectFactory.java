@@ -1,4 +1,4 @@
-package cn.crs.common.util.blockThreadPool.test.factory;
+package cn.crs.test.common.util.blockThreadPool.factory;
 
 import cn.crs.common.util.blockThreadPool.ObjectFactory;
 import cn.crs.reserve.entity.SysUser;

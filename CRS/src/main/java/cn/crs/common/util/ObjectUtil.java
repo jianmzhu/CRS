@@ -1,4 +1,4 @@
-package cn.crs.common;
+package cn.crs.common.util;
 
 import java.beans.BeanInfo;
 import java.beans.IntrospectionException;

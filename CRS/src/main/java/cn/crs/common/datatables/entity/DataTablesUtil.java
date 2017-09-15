@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 
-import cn.crs.common.ObjectUtil;
+import cn.crs.common.util.ObjectUtil;
 
 public class DataTablesUtil {
 	private static DataTablesUtil dataTablesUtil = null;
