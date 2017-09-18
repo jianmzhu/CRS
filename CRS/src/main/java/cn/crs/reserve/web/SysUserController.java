@@ -27,6 +27,7 @@ import cn.crs.common.pagination.PagedResult;
 import cn.crs.common.util.PageUtils;
 import cn.crs.reserve.entity.SysUser;
 import cn.crs.reserve.entity.SysUserExample;
+import cn.crs.reserve.entity.SysUserExample.Criteria;
 import cn.crs.reserve.service.SysUserService;
 
 /**
@@ -136,6 +137,9 @@ public class SysUserController extends JsonBaseController{
 			e1.printStackTrace();
 		}
 		
+		//TODO 空值处理
+		//TODO 当查询全部记录时，返回-1，程序没有匹配
+		
 		log.debug("处理后，页面参数为：pageStart{},pageSize{}", pageStart,pageSize);
 		log.debug("处理后，页面参数为：pageNumber{}", pageNumber);
 		
@@ -146,6 +150,9 @@ public class SysUserController extends JsonBaseController{
 			log.debug("orderByClause为：" + orderByClause);
 			sysUserExample.setOrderByClause(orderByClause);
 		}
+		//测试使用
+		Criteria criteria = sysUserExample.createCriteria();
+		criteria.andUserIdBetween(10000, 10100);
 		Map<String,Object> extraData = new HashMap<String,Object>();
 		extraData.put("draw", draw);
 		

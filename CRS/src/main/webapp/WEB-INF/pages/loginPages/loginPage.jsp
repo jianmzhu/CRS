@@ -33,7 +33,7 @@
         <div>
             <div>
 
-                <h1 class="logo-name">車</h1>
+                <h1 class="logo-name">CRS</h1>
 
             </div>
             <h3>欢迎使用公司资源管理系统</h3>
