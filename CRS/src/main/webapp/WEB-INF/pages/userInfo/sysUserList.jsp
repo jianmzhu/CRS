@@ -137,7 +137,7 @@
 								//"async":false,//如果为false的话，只有火狐才能显示效果，改为true全部都可以显示
 								"type" : "POST",
 								"url" : sSource,
-								"contentType":"application/json; charset=utf-8",
+								"contentType":"application/json",
 								"data" : JSON.stringify(aoData),
 								"success" : fnCallback
 							});

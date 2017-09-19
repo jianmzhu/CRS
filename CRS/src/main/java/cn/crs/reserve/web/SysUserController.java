@@ -111,11 +111,11 @@ public class SysUserController extends JsonBaseController{
      * @param page
      * @return
      */
-	@RequestMapping(value = "/getSysUser/list", method = RequestMethod.POST)
+	@RequestMapping(value = "/getSysUser/list", method = RequestMethod.POST,  produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String sysUserListByPaginator(@RequestBody Map<String,Object> pageJsonMap) {
+	public String sysUserListByPaginator(@RequestBody Map<String,Object> pageJsonMap,HttpServletResponse response) {
 		log.debug("分页查询用户信息列表请求入参：pageJsonMap{}", pageJsonMap);
-		
+		response.setContentType("application/json;charset=UTF-8");//防止数据传递乱码
 		Integer draw = Integer.parseInt(pageJsonMap.get("sEcho")+"");
 		Integer pageStart = Integer.parseInt(pageJsonMap.get("iDisplayStart")+"");//查询第几条
 		Integer pageSize = Integer.parseInt(pageJsonMap.get("iDisplayLength")+"");//每页长度
@@ -151,8 +151,8 @@ public class SysUserController extends JsonBaseController{
 			sysUserExample.setOrderByClause(orderByClause);
 		}
 		//测试使用
-		Criteria criteria = sysUserExample.createCriteria();
-		criteria.andUserIdBetween(10000, 10100);
+//		Criteria criteria = sysUserExample.createCriteria();
+//		criteria.andUserIdBetween(10000, 10100);
 		Map<String,Object> extraData = new HashMap<String,Object>();
 		extraData.put("draw", draw);
 		
