@@ -121,21 +121,7 @@ public class SysUserController extends JsonBaseController{
 		Integer pageSize = Integer.parseInt(pageJsonMap.get("iDisplayLength")+"");//每页长度
 		Integer pageNumber = (pageStart + 1)/pageSize + 1;//页数
 		DataTablesParam dataTablesParam = null;
-		try {
-			dataTablesParam = DataTablesUtil.getInstance().createDataTablesParam(pageJsonMap);
-		} catch (IllegalAccessException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (InstantiationException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (InvocationTargetException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IntrospectionException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		dataTablesParam = DataTablesUtil.getInstance().createDataTablesParam(pageJsonMap);//获取当前datatables送进的值
 		
 		//TODO 空值处理
 		//TODO 当查询全部记录时，返回-1，程序没有匹配

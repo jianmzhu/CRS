@@ -25,20 +25,20 @@ public class DataTablesUtil {
 		return DataTablesUtil.dataTablesUtil;
 	}
 	
-	public DataTablesParam createDataTablesParam(Map<String,Object> dataMap) throws IllegalAccessException, InstantiationException, InvocationTargetException, IntrospectionException{
+	public DataTablesParam createDataTablesParam(Map<String,Object> dataMap){
 		DataTablesParam dataTablesParam = mapToDataTablesParam(dataMap);//获取表格详细
 		addDataTablesParams(dataTablesParam, dataMap);
 		return dataTablesParam;
 	}
 	
-	private DataTablesParam mapToDataTablesParam(Map<String,Object> dataMap) throws IllegalAccessException, InstantiationException, InvocationTargetException, IntrospectionException{
+	private DataTablesParam mapToDataTablesParam(Map<String,Object> dataMap){
 		dataTablesParam = new DataTablesParam();
 		dataTablesParam = (DataTablesParam) ObjectUtil.convertMap(DataTablesParam.class, dataMap);
 		return this.dataTablesParam;
 		
 	}
 	
-	private void addDataTablesParams(DataTablesParam dataTablesParam , Map<String,Object> dataMap) throws IntrospectionException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+	private void addDataTablesParams(DataTablesParam dataTablesParam , Map<String,Object> dataMap){
 		int colCount = Integer.parseInt(""+dataMap.get("iColumns"));//总列数
 		int sortCount = Integer.parseInt(""+dataMap.get("iSortingCols"));//总排序数
 		List<DataTablesColParam> dataTablesColParams = new ArrayList<DataTablesColParam>();

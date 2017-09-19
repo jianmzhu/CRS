@@ -9,7 +9,12 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 public class ObjectUtil {
+	
+	private static Logger log = Logger.getLogger(ObjectUtil.class);
+	
 	/** 
      * 将一个 JavaBean 对象转化为一个  Map 
      * @param bean 要转化的JavaBean 对象 
@@ -55,11 +60,26 @@ public class ObjectUtil {
      * @throws InvocationTargetException 如果调用属性的 setter 方法失败 
      */  
     @SuppressWarnings("rawtypes")  
-    public static Object convertMap(Class type, Map map)  
-            throws IntrospectionException, IllegalAccessException,  
-            InstantiationException, InvocationTargetException {  
-        BeanInfo beanInfo = Introspector.getBeanInfo(type); // 获取类属性  
-        Object obj = type.newInstance(); // 创建 JavaBean 对象  
+    public static Object convertMap(Class type, Map map){  
+        BeanInfo beanInfo = null;
+        Object obj = null;
+        try {
+        	// 获取类属性  
+			beanInfo = Introspector.getBeanInfo(type);
+		} catch (IntrospectionException e) {
+			log.error("获取bean失败",e);
+			return obj;
+		} 
+        
+        try {
+			obj = type.newInstance(); // 创建 JavaBean 对象  
+		} catch (InstantiationException e) {
+			log.error("创建 JavaBean对象失败，InstantiationException",e);
+			return obj;
+		} catch (IllegalAccessException e) {
+			log.error("创建 JavaBean对象失败，IllegalAccessException",e);
+			return obj;
+		}
   
         // 给 JavaBean 对象的属性赋值  
         PropertyDescriptor[] propertyDescriptors =  beanInfo.getPropertyDescriptors();  
@@ -74,7 +94,18 @@ public class ObjectUtil {
                 Object[] args = new Object[1];  
                 args[0] = value;  
   
-                descriptor.getWriteMethod().invoke(obj, args);  
+                try {
+					descriptor.getWriteMethod().invoke(obj, args);
+				} catch (IllegalAccessException e) {
+					log.error("注入JavaBean属性值失败，IllegalAccessException",e);
+					return obj;
+				} catch (IllegalArgumentException e) {
+					log.error("注入JavaBean属性值失败，IllegalArgumentException",e);
+					return obj;
+				} catch (InvocationTargetException e) {
+					log.error("注入JavaBean属性值失败，InvocationTargetException",e);
+					return obj;
+				}  
             }  
         }  
         return obj;  
@@ -84,10 +115,14 @@ public class ObjectUtil {
         Class<? extends Object> clazz = obj.getClass();//获取对象的类型  
         PropertyDescriptor pd = PropertyUtil.getPropertyDescriptor(clazz,propertyName);//获取 clazz 类型中的 propertyName 的属性描述器  
         Method setMethod = pd.getWriteMethod();//从属性描述器中获取 set 方法  
-        try {  
-            setMethod.invoke(obj, new Object[]{value});//调用 set 方法将传入的value值保存属性中去  
-        }catch (Exception e){  
-            e.printStackTrace();  
-        }  
+            try {
+				setMethod.invoke(obj, new Object[]{value});//调用 set 方法将传入的value值保存属性中去  
+			} catch (IllegalAccessException e) {
+				log.error("注入JavaBean属性值失败，IllegalAccessException",e);
+			} catch (IllegalArgumentException e) {
+				log.error("注入JavaBean属性值失败，IllegalArgumentException",e);
+			} catch (InvocationTargetException e) {
+				log.error("注入JavaBean属性值失败，InvocationTargetException",e);
+			}  
     }  
 }
