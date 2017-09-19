@@ -119,6 +119,24 @@ public class SysUserController extends JsonBaseController{
 	public String sysUserListByPaginator(@RequestBody Map<String,Object> pageJsonMap,HttpServletResponse response) {
 		log.debug("分页查询用户信息列表请求入参：pageJsonMap{}", pageJsonMap);
 
+		Map<String, Object> extraData = doPage(pageJsonMap);
+		
+		SysUserExample sysUserExample = new SysUserExample();
+		//测试使用
+		Criteria criteria = sysUserExample.createCriteria();
+		criteria.andUserIdBetween(10000, 10500);
+		
+		try {
+			PagedResult<SysUser> pageResult = BeanUtil.toPagedResult(sysUserService.selectByExample(sysUserExample));
+//			PagedResult<SysUserPaginationSimple> pageResult = sysUserPaginationSimpleService.queryByPageOffset(userName, pageStart,pageSize);
+//			PagedResult<SysUser> pageResult = sysUserService.selectByExampleAndOffsetPage(sysUserExample, pageStart, pageSize);
+			return responseDataTablesSuccess(pageResult, extraData);
+    	} catch (Exception e) {
+			return responseFail(e.getMessage());
+		}
+	}
+
+	private Map<String, Object> doPage(Map<String, Object> pageJsonMap) {
 		//回调值部分
 		Integer draw = Integer.parseInt((pageJsonMap.get("sEcho")==null?"0":pageJsonMap.get("sEcho"))+"");//默认为零的次数传输
 		Map<String,Object> extraData = new HashMap<String,Object>();
@@ -149,21 +167,7 @@ public class SysUserController extends JsonBaseController{
 			PageHelper.orderBy(orderByClause);
 //			sysUserExample.setOrderByClause(orderByClause);
 		}
-		
-		
-		SysUserExample sysUserExample = new SysUserExample();
-		//测试使用
-		Criteria criteria = sysUserExample.createCriteria();
-		criteria.andUserIdBetween(10000, 10500);
-		
-		try {
-			PagedResult<SysUser> pageResult = BeanUtil.toPagedResult(sysUserService.selectByExample(sysUserExample));
-//			PagedResult<SysUserPaginationSimple> pageResult = sysUserPaginationSimpleService.queryByPageOffset(userName, pageStart,pageSize);
-//			PagedResult<SysUser> pageResult = sysUserService.selectByExampleAndOffsetPage(sysUserExample, pageStart, pageSize);
-			return responseDataTablesSuccess(pageResult, extraData);
-    	} catch (Exception e) {
-			return responseFail(e.getMessage());
-		}
+		return extraData;
 	}
 
 }
