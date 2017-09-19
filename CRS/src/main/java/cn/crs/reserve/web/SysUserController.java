@@ -115,17 +115,15 @@ public class SysUserController extends JsonBaseController{
 	@ResponseBody
 	public String sysUserListByPaginator(@RequestBody Map<String,Object> pageJsonMap,HttpServletResponse response) {
 		log.debug("分页查询用户信息列表请求入参：pageJsonMap{}", pageJsonMap);
-		response.setContentType("application/json;charset=UTF-8");//防止数据传递乱码
-		Integer draw = Integer.parseInt(pageJsonMap.get("sEcho")+"");
-		Integer pageStart = Integer.parseInt(pageJsonMap.get("iDisplayStart")+"");//查询第几条
-		Integer pageSize = Integer.parseInt(pageJsonMap.get("iDisplayLength")+"");//每页长度
+
+		Integer draw = Integer.parseInt((pageJsonMap.get("sEcho")==null?"0":pageJsonMap.get("sEcho"))+"");//默认为零的次数传输
+		Integer pageStart = Integer.parseInt((pageJsonMap.get("iDisplayStart")==null?"1":pageJsonMap.get("iDisplayStart"))+"");//查询第几条 默认第一条开始
+		Integer pageSize = Integer.parseInt((pageJsonMap.get("iDisplayLength")==null?"10":pageJsonMap.get("iDisplayLength"))+"");//每页长度 默认10条
 		Integer pageNumber = (pageStart + 1)/pageSize + 1;//页数
 		DataTablesParam dataTablesParam = null;
 		dataTablesParam = DataTablesUtil.getInstance().createDataTablesParam(pageJsonMap);//获取当前datatables送进的值
 		
 		//TODO 空值处理
-		//TODO 当查询全部记录时，返回-1，程序没有匹配
-		
 		log.debug("处理后，页面参数为：pageStart{},pageSize{}", pageStart,pageSize);
 		log.debug("处理后，页面参数为：pageNumber{}", pageNumber);
 		
