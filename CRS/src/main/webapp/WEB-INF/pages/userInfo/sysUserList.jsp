@@ -128,7 +128,7 @@
 		                //"bSortClasses":true, //当对大数据集进行排序的时候你或许希望关闭该选项 
 		                //"bStateSave":true,//开关，是否打开客户端状态记录功能。这个数据是记录在cookies中的，	例如分页信息，展示长度，过滤和排序等 		打开了这个记录后，即使刷新一次页面，或重新打开浏览器，之前的状态都是保存下来的-			------当值为true时aoColumnDefs不能隐藏列
 						//"aaSorting": [[1, "asc"],[2,"desc"]],//多列排序
-						"aLengthMenu":[[5,50,100,-1],[5,50,100,"all"]],//这个为选择每页的条目数，当使用一个二维数组时，二维层面只能有两个元素，第一个为显示每页条目数的选项，第二个是关于这些选项的解释
+						"aLengthMenu":[[5,20,50,100],[5,20,50,100]],//这个为选择每页的条目数，当使用一个二维数组时，二维层面只能有两个元素，第一个为显示每页条目数的选项，第二个是关于这些选项的解释
 						// /*TODO*/"aoSearchCols":[null, {"sSearch": "My filter"}, null,{"sSearch": "^[0-9]", "bEscapeRegex": false}],//给每个列单独定义其初始化搜索列表特性（这一块还没搞懂）
 		                //"sPaginationType":"full_numbers",
 						"fnServerData" : function(sSource, aoData, fnCallback) {

@@ -73,7 +73,11 @@ public class SysUserServiceImpl implements SysUserService {
 	public PagedResult<SysUser> selectByExampleAndOffsetPage(SysUserExample example, Integer pageOffset, Integer pageSize) {
 		pageOffset = pageOffset == null?0:pageOffset;
 		pageSize = pageSize == null?10:pageSize;
-		PageHelper.offsetPage(pageOffset,pageSize);  //pageOffset是告诉拦截器说我要开始分页了。分页参数是这两个,pageOffset为位移，pageSize为每页条数。
+		if(pageSize>0){
+			PageHelper.offsetPage(pageOffset,pageSize);  //pageOffset是告诉拦截器说我要开始分页了。分页参数是这两个,pageOffset为位移，pageSize为每页条数。
+		}else{
+			PageHelper.startPage(1, 0);
+		}
 		return BeanUtil.toPagedResult(selectByExample(example));
 	}
 

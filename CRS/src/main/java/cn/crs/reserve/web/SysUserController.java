@@ -138,7 +138,7 @@ public class SysUserController extends JsonBaseController{
 		}
 		//测试使用
 //		Criteria criteria = sysUserExample.createCriteria();
-//		criteria.andUserIdBetween(10000, 10100);
+//		criteria.andUserIdBetween(10000, 10500);
 		Map<String,Object> extraData = new HashMap<String,Object>();
 		extraData.put("draw", draw);
 		
