@@ -21,8 +21,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.pagehelper.PageHelper;
+
 import cn.crs.common.datatables.entity.DataTablesParam;
 import cn.crs.common.datatables.entity.DataTablesUtil;
+import cn.crs.common.pagination.BeanUtil;
 import cn.crs.common.pagination.PagedResult;
 import cn.crs.common.util.PageUtils;
 import cn.crs.reserve.entity.SysUser;
@@ -116,33 +119,47 @@ public class SysUserController extends JsonBaseController{
 	public String sysUserListByPaginator(@RequestBody Map<String,Object> pageJsonMap,HttpServletResponse response) {
 		log.debug("分页查询用户信息列表请求入参：pageJsonMap{}", pageJsonMap);
 
+		//回调值部分
 		Integer draw = Integer.parseInt((pageJsonMap.get("sEcho")==null?"0":pageJsonMap.get("sEcho"))+"");//默认为零的次数传输
+		Map<String,Object> extraData = new HashMap<String,Object>();
+		extraData.put("draw", draw);
+		
+		//分页部分
 		Integer pageStart = Integer.parseInt((pageJsonMap.get("iDisplayStart")==null?"1":pageJsonMap.get("iDisplayStart"))+"");//查询第几条 默认第一条开始
 		Integer pageSize = Integer.parseInt((pageJsonMap.get("iDisplayLength")==null?"10":pageJsonMap.get("iDisplayLength"))+"");//每页长度 默认10条
 		Integer pageNumber = (pageStart + 1)/pageSize + 1;//页数
-		DataTablesParam dataTablesParam = null;
-		dataTablesParam = DataTablesUtil.getInstance().createDataTablesParam(pageJsonMap);//获取当前datatables送进的值
-		
 		//TODO 空值处理
 		log.debug("处理后，页面参数为：pageStart{},pageSize{}", pageStart,pageSize);
 		log.debug("处理后，页面参数为：pageNumber{}", pageNumber);
+		pageStart = pageStart == null?0:pageStart;
+		pageSize = pageSize == null?10:pageSize;
+		if(pageSize>0){
+			PageHelper.offsetPage(pageStart,pageSize);  //pageOffset是告诉拦截器说我要开始分页了。分页参数是这两个,pageOffset为位移，pageSize为每页条数。
+		}else{
+			PageHelper.startPage(1, 0);
+		}
 		
-		SysUserExample sysUserExample = new SysUserExample();
+		//排序部分
+		DataTablesParam dataTablesParam = null;
+		dataTablesParam = DataTablesUtil.getInstance().createDataTablesParam(pageJsonMap);//获取当前datatables送进的值
 		if(dataTablesParam!=null){
 			log.debug("dataTablesParam对象为：" + dataTablesParam.toString());
 			String orderByClause = DataTablesUtil.getOrderByClause(dataTablesParam);
 			log.debug("orderByClause为：" + orderByClause);
-			sysUserExample.setOrderByClause(orderByClause);
+			PageHelper.orderBy(orderByClause);
+//			sysUserExample.setOrderByClause(orderByClause);
 		}
+		
+		
+		SysUserExample sysUserExample = new SysUserExample();
 		//测试使用
-//		Criteria criteria = sysUserExample.createCriteria();
-//		criteria.andUserIdBetween(10000, 10500);
-		Map<String,Object> extraData = new HashMap<String,Object>();
-		extraData.put("draw", draw);
+		Criteria criteria = sysUserExample.createCriteria();
+		criteria.andUserIdBetween(10000, 10500);
 		
 		try {
+			PagedResult<SysUser> pageResult = BeanUtil.toPagedResult(sysUserService.selectByExample(sysUserExample));
 //			PagedResult<SysUserPaginationSimple> pageResult = sysUserPaginationSimpleService.queryByPageOffset(userName, pageStart,pageSize);
-			PagedResult<SysUser> pageResult = sysUserService.selectByExampleAndOffsetPage(sysUserExample, pageStart, pageSize);
+//			PagedResult<SysUser> pageResult = sysUserService.selectByExampleAndOffsetPage(sysUserExample, pageStart, pageSize);
 			return responseDataTablesSuccess(pageResult, extraData);
     	} catch (Exception e) {
 			return responseFail(e.getMessage());
