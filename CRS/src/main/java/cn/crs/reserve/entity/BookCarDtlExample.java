@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class BookCarDtlExample {
     protected String orderByClause;
 

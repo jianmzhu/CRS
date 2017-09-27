@@ -126,8 +126,8 @@ public class SysUserController extends JsonBaseController{
 		
 		SysUserExample sysUserExample = new SysUserExample();
 		//测试使用
-		Criteria criteria = sysUserExample.createCriteria();
-		criteria.andUserIdBetween(10000, 10500);
+//		Criteria criteria = sysUserExample.createCriteria();
+//		criteria.andUserIdBetween(10000, 10500);
 		
 		try {
 			PagedResult<SysUser> pageResult = BeanUtil.toPagedResult(sysUserService.selectByExample(sysUserExample));
