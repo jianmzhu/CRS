@@ -22,58 +22,140 @@
 <!-- 公共页面元素 -->
 <jsp:include page="../headPages/head_common.jsp" />
 
+<!-- custom style -->
+<link href="${mybasePath}/static/css/plugins/iCheck/custom.css"
+	rel="stylesheet">
+
 <!-- Data Tables -->
 <link
 	href="${mybasePath}/static/css/plugins/dataTables/dataTables.bootstrap.css"
-	rel="stylesheet">
-<link href="${mybasePath}/static/css/animate.min.css"
-	rel="stylesheet">
-<link href="${mybasePath}/static/css/style.min862f.css?v=4.1.0"
 	rel="stylesheet">
 </head>
 
 <body class="gray-bg">
 	<div class="wrapper wrapper-content animated fadeInRight">
+
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="ibox float-e-margins">
-					<div class="ibox-title">
-						<h5>
-							基本 <small>分类，查找</small>
-						</h5>
-						<div class="ibox-tools">
-							<a class="collapse-link"> <i class="fa fa-chevron-up"></i>
-							</a>
+					<div class="text-right">
+						<button type="button" class="btn btn-primary" data-toggle="modal"
+							data-target="#myModal">添加约车记录</button>
+					</div>
+					<div class="modal inmodal" id="myModal" tabindex="-1" role="dialog"
+						aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content animated bounceInRight">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">
+										<span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
+									</button>
+									<!-- <i class="fa fa-laptop modal-icon"></i> -->
+									<h4 class="modal-title">窗口标题</h4>
+								</div>
+								<div class="modal-body">
+									<p>
+										<strong>约车（时间段选择）</strong>
+									</p>
+									<form role="form" class="form-horizontal">
+										<div class="form-group">
+											<div class="checkbox i-checks">
+												<label><input type="checkbox" value="" name=""><i></i>全天</label>
+												<label><input type="checkbox" value="" name=""><i></i>凌晨</label>
+												<label><input type="checkbox" value="" name=""><i></i>上午</label>&nbsp;&nbsp;&nbsp;&nbsp;
+												<label><input type="checkbox" value="" name=""><i></i>下午</label>&nbsp;&nbsp;&nbsp;
+												<label><input type="checkbox" value="" name=""><i></i>夜间</label>
+											</div>
+											<div class="checkbox i-checks">
+												<label><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>&nbsp;</label>
+												<label><input type="checkbox" value="" name=""><i></i>零点</label>
+												<label><input type="checkbox" value="" name=""><i></i>六点</label>&nbsp;&nbsp;&nbsp;&nbsp;
+												<label><input type="checkbox" value="" name=""><i></i>十二点</label>
+												<label><input type="checkbox" value="" name=""><i></i>十八点</label>
+											</div>
+											<div class="checkbox i-checks">
+												<label><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>&nbsp;</label>
+												<label><input type="checkbox" value="" name=""><i></i>一点</label>
+												<label><input type="checkbox" value="" name=""><i></i>七点</label>&nbsp;&nbsp;&nbsp;&nbsp;
+												<label><input type="checkbox" value="" name=""><i></i>十三点</label>
+												<label><input type="checkbox" value="" name=""><i></i>十九点</label>
+											</div>
+											<div class="checkbox i-checks">
+												<label><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>&nbsp;</label>
+												<label><input type="checkbox" value="" name=""><i></i>二点</label>
+												<label><input type="checkbox" value="" name=""><i></i>八点</label>&nbsp;&nbsp;&nbsp;&nbsp;
+												<label><input type="checkbox" value="" name=""><i></i>十四点</label>
+												<label><input type="checkbox" value="" name=""><i></i>二十点</label>
+											</div>
+											<div class="checkbox i-checks">
+												<label><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>&nbsp;</label>
+												<label><input type="checkbox" value="" name=""><i></i>三点</label>
+												<label><input type="checkbox" value="" name=""><i></i>九点</label>&nbsp;&nbsp;&nbsp;&nbsp;
+												<label><input type="checkbox" value="" name=""><i></i>十五点</label>
+												<label><input type="checkbox" value="" name=""><i></i>二十一点</label>
+											</div>
+											<div class="checkbox i-checks">
+												<label><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>&nbsp;</label>
+												<label><input type="checkbox" value="" name=""><i></i>四点</label>
+												<label><input type="checkbox" value="" name=""><i></i>十点</label>&nbsp;&nbsp;&nbsp;&nbsp;
+												<label><input type="checkbox" value="" name=""><i></i>十六点</label>
+												<label><input type="checkbox" value="" name=""><i></i>二十二点</label>
+											</div>
+											<div class="checkbox i-checks">
+												<label><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>&nbsp;</label>
+												<label><input type="checkbox" value="" name=""><i></i>五点</label>
+												<label><input type="checkbox" value="" name=""><i></i>十一点</label>
+												<label><input type="checkbox" value="" name=""><i></i>十七点</label>
+												<label><input type="checkbox" value="" name=""><i></i>二十三点</label>
+											</div>
+										</div>
+									</form>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-white"
+										data-dismiss="modal">关闭</button>
+									<button type="button" class="btn btn-primary">保存</button>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div class="ibox-content">
-
-						<table id="tablelist"
-							class="table table-striped table-bordered table-hover dataTables-example">
-							<thead>
-								<tr>
-									<th>预约日期</th>
-									<th>预约时间</th>
-									<th>工号</th>
-									<th>约车时间段</th>
-									<th>约车摘要</th>
-									<th>操作</th>
-								</tr>
-							</thead>
-							<tfoot>
-								<tr>
-									<th>预约日期</th>
-									<th>预约时间</th>
-									<th>工号</th>
-									<th>约车时间段</th>
-									<th>约车摘要</th>
-									<th>操作</th>
-								</tr>
-							</tfoot>
-						</table>
-
-					</div>
 				</div>
+			</div>
+		</div>
+		<div class="ibox float-e-margins">
+			<div class="ibox-title">
+				<h5>
+					基本 <small>分类，查找</small>
+				</h5>
+				<div class="ibox-tools">
+					<a class="collapse-link"> <i class="fa fa-chevron-up"></i>
+					</a>
+				</div>
+			</div>
+			<div class="ibox-content">
+				<table id="tablelist"
+					class="table table-striped table-bordered table-hover dataTables-example">
+					<thead>
+						<tr>
+							<th>预约日期</th>
+							<th>预约时间</th>
+							<th>工号</th>
+							<th>约车时间段</th>
+							<th>约车摘要</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<th>预约日期</th>
+							<th>预约时间</th>
+							<th>工号</th>
+							<th>约车时间段</th>
+							<th>约车摘要</th>
+							<th>操作</th>
+						</tr>
+					</tfoot>
+				</table>
 			</div>
 		</div>
 	</div>
@@ -87,6 +169,7 @@
 	<script
 		src="${mybasePath}/static/js/plugins/dataTables/dataTables.bootstrap.js"></script>
 	<script src="${mybasePath}/static/js/content.min.js?v=1.0.0"></script>
+	<script src="${mybasePath}/static/js/plugins/iCheck/icheck.min.js"></script>
 
 	<script type="text/javascript">
 		//获取当前项目的路径
@@ -100,6 +183,7 @@
 			var url =  urlRootContext + "/getBookCarDtl/list"; //请求的网址
 			
 			$(document).ready(function() {
+					$(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",});
 					$('#tablelist').DataTable({
 						"sAjaxSource" : url,
 						"bPaginate": true, //开关，是否显示分页器  默认为true 是否开启分页功能,即使设置为false,仍然会有一个默认的<前进,后退>分页组件 
